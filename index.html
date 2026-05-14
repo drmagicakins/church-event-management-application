@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Team Praise Official ministry website and event management SaaS dashboard for worship events, sermons, donations, prayer requests, gallery, blog, and ministry operations.">
+    <meta name="keywords" content="Team Praise, worship, church event management, ministry dashboard, sermons, prayer requests, donations, Lagos, Christian music ministry">
+    <meta name="author" content="Team Praise Official">
+    <meta property="og:title" content="Team Praise Official - One Sound. One Praise. One Kingdom.">
+    <meta property="og:description" content="A world-class worship movement and complete ministry event management platform.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1600&q=80">
+    <meta name="theme-color" content="#0a1a3a">
+    <title>Team Praise Official | Ministry Event Management Platform</title>
+
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/responsive/3.0.2/css/responsive.bootstrap5.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --royal: #1647e8;
+            --royal-2: #0f35ad;
+            --gold: #f6c84c;
+            --gold-2: #d69d1f;
+            --navy: #06142e;
+            --navy-2: #0a1d42;
+            --paper: #ffffff;
+            --mist: #f4f7ff;
+            --ink: #0d1733;
+            --muted: #64748b;
+            --line: rgba(12, 27, 64, 0.12);
+            --glass: rgba(255, 255, 255, 0.78);
+            --shadow: 0 26px 60px rgba(7, 20, 46, 0.16);
+            --hero-image: url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=2400&q=86');
+        }
+
+        [data-bs-theme="dark"] {
+            --paper: #071326;
+            --mist: #0b1730;
+            --ink: #f8fbff;
+            --muted: #a9b7d0;
+            --line: rgba(255, 255, 255, 0.12);
+            --glass: rgba(7, 19, 38, 0.78);
+            --shadow: 0 28px 80px rgba(0, 0, 0, 0.38);
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: var(--mist);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            overflow-x: hidden;
+        }
+
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+        .text-gold { color: var(--gold) !important; }
+        .text-royal { color: var(--royal) !important; }
+        .text-muted { color: var(--muted) !important; }
+        .text-white { color: #fff !important; }
+        .text-white-50 { color: rgba(255,255,255,.5) !important; }
+        .bg-navy { background: var(--navy); }
+        .bg-dark { background-color: #212529 !important; }
+        .fw-bold { font-weight: 700 !important; }
+        .fw-bolder, .fw-black { font-weight: 900 !important; }
+        .lh-sm { line-height: 1.25 !important; }
+        .tracking-widest { letter-spacing: .22em; }
+        .display-5 { font-size: 2.5rem !important; font-weight: 300; line-height: 1.2; }
+        .display-6 { font-size: 2rem !important; font-weight: 500; line-height: 1.2; }
+        .fs-5 { font-size: 1.25rem !important; }
+        .small, small { font-size: .875em !important; }
+        .lead-soft { color: var(--muted); font-size: 1.08rem; line-height: 1.8; }
+        .page-wrap { min-height: 70vh; padding-top: 0; }
+        @media (min-width: 992px) { .px-lg-5 { padding-left: 3rem !important; padding-right: 3rem !important; } }
+        .section-pad { padding: 6.5rem 0; }
+        .section-pad-sm { padding: 4.25rem 0; }
+        @media (min-width: 1400px) {
+            .container, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm { max-width: 1280px; }
+        }
+        .section-kicker {
+            color: var(--royal);
+            font-size: .78rem;
+            letter-spacing: .18em;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+        [data-bs-theme="dark"] .section-kicker { color: var(--gold); }
+        .section-title {
+            font-size: clamp(2rem, 4vw, 4.4rem);
+            line-height: .95;
+            font-weight: 900;
+            letter-spacing: -0.055em;
+        }
+        .lead-soft { color: var(--muted); font-size: 1.08rem; line-height: 1.8; }
+        .btn-gold {
+            --bs-btn-color: #071326;
+            --bs-btn-bg: var(--gold);
+            --bs-btn-border-color: var(--gold);
+            --bs-btn-hover-color: #06142e;
+            --bs-btn-hover-bg: #ffe083;
+            --bs-btn-hover-border-color: #ffe083;
+            font-weight: 800;
+            box-shadow: 0 18px 40px rgba(246, 200, 76, 0.22);
+        }
+        .btn-royal {
+            --bs-btn-color: #fff;
+            --bs-btn-bg: var(--royal);
+            --bs-btn-border-color: var(--royal);
+            --bs-btn-hover-color: #fff;
+            --bs-btn-hover-bg: var(--royal-2);
+            --bs-btn-hover-border-color: var(--royal-2);
+            font-weight: 800;
+        }
+        .btn-outline-gold {
+            --bs-btn-color: var(--gold);
+            --bs-btn-border-color: rgba(246, 200, 76, .65);
+            --bs-btn-hover-color: #071326;
+            --bs-btn-hover-bg: var(--gold);
+            --bs-btn-hover-border-color: var(--gold);
+            font-weight: 800;
+        }
+        .glass {
+            background: var(--glass);
+            border: 1px solid var(--line);
+            backdrop-filter: blur(18px);
+            box-shadow: var(--shadow);
+        }
+        .card-premium {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 1.25rem;
+            box-shadow: 0 18px 46px rgba(8, 25, 55, .08);
+            transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+        }
+        .card-premium:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: rgba(22, 71, 232, .22); }
+        .navbar-public {
+            background: rgba(6, 20, 46, .74);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+            transition: background .25s ease, box-shadow .25s ease;
+        }
+        .navbar-public.scrolled { background: rgba(6, 20, 46, .94); box-shadow: 0 12px 38px rgba(0,0,0,.18); }
+        .navbar-public .navbar-brand { color: #fff; }
+        .navbar-public .navbar-brand:hover { color: #fff; }
+        .navbar-public .nav-link { color: rgba(255,255,255,.77); font-weight: 700; font-size: .92rem; padding: .5rem .9rem; }
+        .navbar-public .nav-link:hover, .navbar-public .nav-link.active { color: var(--gold); }
+        .navbar-public .navbar-toggler { border-color: rgba(246, 200, 76, .45); padding: .4rem .75rem; }
+        .navbar-public .navbar-toggler:focus { box-shadow: 0 0 0 .25rem rgba(246, 200, 76, .25); }
+        .navbar-public .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28246, 200, 76, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        @media (max-width: 991.98px) {
+            .navbar-public .navbar-collapse { background: rgba(6, 20, 46, .98); padding: 1.15rem 1.25rem; border-radius: 1rem; margin-top: .8rem; border: 1px solid rgba(246, 200, 76, .15); }
+            .navbar-public .navbar-collapse .nav-link { padding: .65rem .5rem; border-bottom: 1px solid rgba(255,255,255,.06); }
+            .navbar-public .navbar-collapse .nav-link:last-of-type { border-bottom: 0; }
+        }
+        .brand-mark {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            color: var(--gold);
+            background: linear-gradient(135deg, rgba(246,200,76,.22), rgba(22,71,232,.32));
+            border: 1px solid rgba(246,200,76,.25);
+        }
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            color: #fff;
+            isolation: isolate;
+            overflow: hidden;
+            padding-top: 6rem;
+            background-image: linear-gradient(90deg, rgba(3, 12, 31, .96) 0%, rgba(7, 24, 57, .82) 42%, rgba(8, 19, 43, .45) 100%), var(--hero-image);
+            background-size: cover;
+            background-position: center;
+        }
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: auto 0 0 0;
+            height: 35%;
+            background: linear-gradient(180deg, rgba(244,247,255,0), var(--mist));
+            z-index: -1;
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: -4%;
+            background-image: inherit;
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+            animation: heroScale 18s ease-in-out infinite alternate;
+        }
+        .brand-lockup {
+            font-size: clamp(4rem, 13vw, 10.8rem);
+            line-height: .82;
+            font-weight: 950;
+            letter-spacing: -0.09em;
+            max-width: 960px;
+            text-shadow: 0 22px 60px rgba(0,0,0,.42);
+        }
+        .hero-subline {
+            font-size: clamp(1.4rem, 3.4vw, 3.7rem);
+            line-height: 1;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+        }
+        .hero-countdown {
+            width: min(740px, 100%);
+            border-top: 1px solid rgba(255,255,255,.2);
+            border-bottom: 1px solid rgba(255,255,255,.16);
+            padding: 1rem 0;
+        }
+        .countdown-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .65rem; }
+        .countdown-unit strong { display: block; font-size: clamp(1.55rem, 4vw, 2.55rem); line-height: 1; color: var(--gold); }
+        .countdown-unit span { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.68); }
+        .hero-animate { opacity: 0; transform: translateY(28px); animation: riseIn .9s ease forwards; }
+        .hero-animate:nth-child(2) { animation-delay: .12s; }
+        .hero-animate:nth-child(3) { animation-delay: .24s; }
+        .hero-animate:nth-child(4) { animation-delay: .36s; }
+        .hero-animate:nth-child(5) { animation-delay: .48s; }
+        .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
+        .reveal.show { opacity: 1; transform: translateY(0); }
+        .image-plane {
+            min-height: 430px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 0;
+            position: relative;
+        }
+        .image-plane::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(6,20,46,.05), rgba(6,20,46,.78));
+        }
+        .event-date-box {
+            min-width: 76px;
+            text-align: center;
+            border-right: 1px solid var(--line);
+            padding-right: 1rem;
+        }
+        .event-date-box strong { display: block; font-size: 2rem; line-height: 1; color: var(--royal); }
+        .event-date-box span { color: var(--muted); text-transform: uppercase; font-size: .76rem; letter-spacing: .12em; }
+        .masonry { columns: 3 260px; column-gap: 1rem; }
+        .masonry-item { break-inside: avoid; margin-bottom: 1rem; cursor: pointer; overflow: hidden; border-radius: 1rem; }
+        .masonry-item img { width: 100%; transition: transform .35s ease; }
+        .masonry-item:hover img { transform: scale(1.055); }
+        .floating-whatsapp {
+            position: fixed;
+            right: 1.15rem;
+            bottom: 1.15rem;
+            z-index: 1030;
+            width: 56px;
+            height: 56px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            color: #fff;
+            background: #25d366;
+            box-shadow: 0 16px 40px rgba(37, 211, 102, .34);
+        }
+        .footer-main { background: #04112a; color: rgba(255,255,255,.78); }
+        .footer-main a:hover { color: var(--gold); }
+        .loader {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: grid;
+            place-items: center;
+            background: var(--navy);
+            color: #fff;
+            transition: opacity .35s ease, visibility .35s ease;
+        }
+        .loader.hidden { opacity: 0; visibility: hidden; }
+        .loader-ring {
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
+            border: 4px solid rgba(255,255,255,.16);
+            border-top-color: var(--gold);
+            animation: spin 1s linear infinite;
+        }
+
+        .admin-shell { min-height: 100vh; background: var(--mist); display: flex; }
+        .admin-sidebar {
+            width: 290px;
+            flex: 0 0 290px;
+            min-height: 100vh;
+            background: #06142e;
+            color: rgba(255,255,255,.78);
+            position: sticky;
+            top: 0;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+        .admin-sidebar .nav-link {
+            color: rgba(255,255,255,.72);
+            border-radius: .9rem;
+            padding: .78rem .9rem;
+            margin-bottom: .18rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: .7rem;
+        }
+        .admin-sidebar .nav-link:hover, .admin-sidebar .nav-link.active { color: #fff; background: rgba(255,255,255,.09); }
+        .admin-sidebar .nav-link.active i { color: var(--gold); }
+        .admin-main { flex: 1; min-width: 0; }
+        .admin-topbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: var(--glass);
+            border-bottom: 1px solid var(--line);
+            backdrop-filter: blur(18px);
+        }
+        .metric-card { overflow: hidden; position: relative; }
+        .metric-card::after {
+            content: "";
+            position: absolute;
+            right: -35px;
+            top: -35px;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: rgba(22, 71, 232, .09);
+        }
+        .admin-login {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            background: radial-gradient(circle at top left, rgba(246,200,76,.18), transparent 30%), radial-gradient(circle at bottom right, rgba(22,71,232,.28), transparent 36%), #06142e;
+            color: #fff;
+            padding: 1.5rem;
+        }
+        .table > :not(caption) > * > * { vertical-align: middle; }
+        .status-dot { width: .58rem; height: .58rem; display: inline-block; border-radius: 999px; margin-right: .35rem; }
+        .drop-zone {
+            border: 2px dashed rgba(22,71,232,.28);
+            border-radius: 1rem;
+            background: rgba(22,71,232,.04);
+            padding: 2rem;
+            text-align: center;
+        }
+        .code-block {
+            max-height: 430px;
+            overflow: auto;
+            background: #020817;
+            color: #d5e4ff;
+            border-radius: 1rem;
+            padding: 1rem;
+            font-size: .86rem;
+            line-height: 1.55;
+        }
+        .toast-container { z-index: 2100; }
+
+        @keyframes heroScale { from { transform: scale(1); } to { transform: scale(1.08); } }
+        @keyframes riseIn { to { opacity: 1; transform: translateY(0); } }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        @media (max-width: 991.98px) {
+            .navbar-public .navbar-collapse { background: rgba(6,20,46,.96); padding: 1rem; border-radius: 1rem; margin-top: .8rem; }
+            .hero { align-items: flex-end; padding-bottom: 4rem; }
+            .admin-shell { display: block; }
+            .admin-sidebar { width: 100%; min-height: auto; position: relative; border-radius: 0 0 1.5rem 1.5rem; }
+            .admin-sidebar .nav { display: grid; grid-template-columns: repeat(2, 1fr); gap: .35rem; }
+        }
+
+        @media (max-width: 575.98px) {
+            .countdown-grid { grid-template-columns: repeat(2, 1fr); }
+            .section-pad { padding: 4rem 0; }
+            .brand-lockup { font-size: 4.2rem; }
+            .admin-sidebar .nav { grid-template-columns: 1fr; }
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Team Praise Official",
+        "url": "https://teampraise.org",
+        "description": "A worship and revival movement with event management, sermons, donations, prayer requests and ministry media.",
+        "sameAs": ["https://facebook.com/teampraise", "https://instagram.com/teampraise", "https://youtube.com/@teampraise"]
+    }
+    </script>
+</head>
+<body>
+    <div class="loader" id="loader" aria-label="Loading Team Praise application">
+        <div class="text-center">
+            <div class="loader-ring mx-auto mb-4"></div>
+            <div class="fw-bold text-uppercase tracking-widest">Team Praise Platform</div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-public" id="publicNav">
+        <div class="container-fluid px-lg-5">
+            <a class="navbar-brand d-flex align-items-center gap-3" href="#home" data-page="home" aria-label="Team Praise home">
+                <span class="brand-mark"><i class="fa-solid fa-music"></i></span>
+                <span class="fw-black lh-sm">Team Praise<br><small class="text-gold fw-bold">Official</small></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#publicMenu" aria-controls="publicMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="publicMenu">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-lg-1">
+                    <li class="nav-item"><a class="nav-link" href="#home" data-page="home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about" data-page="about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#events" data-page="events">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sermons" data-page="sermons">Sermons</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery" data-page="gallery">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#blog" data-page="blog">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact" data-page="contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#donation" data-page="donation">Give</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#admin/dashboard" data-admin-link="true">Admin</a></li>
+                    <li class="nav-item ms-lg-2"><button class="btn btn-sm btn-outline-gold rounded-pill" id="themeTogglePublic" type="button"><i class="fa-solid fa-moon me-1"></i> Theme</button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main id="app" class="page-wrap"></main>
+    <section id="adminRoot" class="d-none"></section>
+
+    <footer class="footer-main section-pad-sm" id="publicFooter"></footer>
+    <a class="floating-whatsapp" href="https://wa.me/2348000000000" target="_blank" rel="noopener" aria-label="Chat with Team Praise on WhatsApp"><i class="fa-brands fa-whatsapp fa-xl"></i></a>
+
+    <div class="modal fade" id="globalModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content" id="globalModalContent"></div>
+        </div>
+    </div>
+
+    <div class="toast-container position-fixed top-0 end-0 p-3" id="toastHost"></div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.2/js/dataTables.responsive.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.2/js/responsive.bootstrap5.js"></script>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+        (() => {
+            'use strict';
+
+            const storageKey = 'tp_platform_data_v1';
+            const authKey = 'tp_admin_session_v1';
+            const rateKey = 'tp_login_rate_v1';
+            const pages = ['home','about','events','sermons','gallery','blog','contact','donation','prayer','livestream'];
+            const heroImages = [
+                "url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=2400&q=86')",
+                "url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=2400&q=86')",
+                "url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=2400&q=86')"
+            ];
+
+            const app = {
+                data: null,
+                csrfToken: createToken(),
+                route: 'home',
+                adminSection: 'dashboard',
+                currentAdmin: null,
+                charts: {},
+                language: localStorage.getItem('tp_language') || 'en'
+            };
+
+            const text = {
+                en: { home: 'Home', events: 'Events', give: 'Give', welcome: 'One Sound. One Praise. One Kingdom.' },
+                yo: { home: 'Ile', events: 'Isele', give: 'Fifun', welcome: 'Ohun Kan. Iyin Kan. Ijoba Kan.' }
+            };
+
+            // Mirrors the server-side RBAC policy that a PHP Auth service would enforce.
+            const rolePermissions = {
+                super_admin: ['*'],
+                manager: ['dashboard','cms','events','sermons','blog','gallery','users','contacts','prayers','newsletter','settings','developer'],
+                editor: ['dashboard','cms','events','sermons','blog','gallery','contacts','prayers','newsletter'],
+                finance: ['dashboard','donations','events','developer'],
+                moderator: ['dashboard','contacts','prayers','newsletter']
+            };
+
+            const SQL_SCHEMA = `-- Team Praise Ministry Event Management Platform
+-- MySQL 8 schema with relationships, indexes, timestamps, and starter data
+CREATE DATABASE IF NOT EXISTS teampraise_app CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE teampraise_app;
+
+CREATE TABLE admins (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(120) NOT NULL,
+    email VARCHAR(180) NOT NULL UNIQUE,
+    username VARCHAR(80) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    role ENUM('super_admin','manager','editor','finance','moderator') NOT NULL DEFAULT 'editor',
+    status ENUM('active','suspended','blocked') NOT NULL DEFAULT 'active',
+    remember_token VARCHAR(120) NULL,
+    last_login_at DATETIME NULL,
+    last_login_ip VARCHAR(64) NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_admins_role_status (role, status)
+) ENGINE=InnoDB;
+
+CREATE TABLE users (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(120) NOT NULL,
+    email VARCHAR(180) NOT NULL UNIQUE,
+    phone VARCHAR(40) NULL,
+    password_hash VARCHAR(255) NULL,
+    status ENUM('active','suspended','blocked') NOT NULL DEFAULT 'active',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_users_status (status)
+) ENGINE=InnoDB;
+
+CREATE TABLE events (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(180) NOT NULL,
+    slug VARCHAR(220) NOT NULL UNIQUE,
+    theme VARCHAR(180) NULL,
+    description TEXT NOT NULL,
+    event_date DATETIME NOT NULL,
+    end_date DATETIME NULL,
+    venue VARCHAR(220) NOT NULL,
+    city VARCHAR(120) NULL,
+    flyer VARCHAR(255) NULL,
+    capacity INT UNSIGNED DEFAULT 0,
+    status ENUM('draft','published','past','cancelled') NOT NULL DEFAULT 'draft',
+    created_by BIGINT UNSIGNED NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (created_by) REFERENCES admins(id) ON DELETE SET NULL,
+    INDEX idx_events_date_status (event_date, status),
+    FULLTEXT INDEX ft_events_search (title, theme, description, venue)
+) ENGINE=InnoDB;
+
+CREATE TABLE event_registrations (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    event_id BIGINT UNSIGNED NOT NULL,
+    user_id BIGINT UNSIGNED NULL,
+    full_name VARCHAR(140) NOT NULL,
+    email VARCHAR(180) NOT NULL,
+    phone VARCHAR(40) NULL,
+    ministry VARCHAR(150) NULL,
+    ticket_code VARCHAR(80) NOT NULL UNIQUE,
+    status ENUM('pending','confirmed','checked_in','cancelled') NOT NULL DEFAULT 'confirmed',
+    ip_address VARCHAR(64) NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (event_id) REFERENCES events(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
+    INDEX idx_event_registrations_event_status (event_id, status),
+    INDEX idx_event_registrations_email (email)
+) ENGINE=InnoDB;
+
+CREATE TABLE sermon_categories (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(120) NOT NULL UNIQUE,
+    slug VARCHAR(150) NOT NULL UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+CREATE TABLE sermons (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    category_id BIGINT UNSIGNED NULL,
+    title VARCHAR(190) NOT NULL,
+    slug VARCHAR(220) NOT NULL UNIQUE,
+    speaker VARCHAR(140) NOT NULL,
+    sermon_date DATE NOT NULL,
+    media_type ENUM('audio','video','youtube') NOT NULL,
+    media_url VARCHAR(255) NOT NULL,
+    download_url VARCHAR(255) NULL,
+    description TEXT NULL,
+    downloads INT UNSIGNED DEFAULT 0,
+    status ENUM('draft','published') NOT NULL DEFAULT 'published',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (category_id) REFERENCES sermon_categories(id) ON DELETE SET NULL,
+    INDEX idx_sermons_date_status (sermon_date, status),
+    FULLTEXT INDEX ft_sermons_search (title, speaker, description)
+) ENGINE=InnoDB;
+
+CREATE TABLE blog_categories (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(120) NOT NULL UNIQUE,
+    slug VARCHAR(150) NOT NULL UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+CREATE TABLE blog_posts (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    category_id BIGINT UNSIGNED NULL,
+    admin_id BIGINT UNSIGNED NULL,
+    title VARCHAR(220) NOT NULL,
+    slug VARCHAR(240) NOT NULL UNIQUE,
+    excerpt VARCHAR(320) NULL,
+    body MEDIUMTEXT NOT NULL,
+    featured_image VARCHAR(255) NULL,
+    tags JSON NULL,
+    status ENUM('draft','scheduled','published','archived') NOT NULL DEFAULT 'draft',
+    published_at DATETIME NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (category_id) REFERENCES blog_categories(id) ON DELETE SET NULL,
+    FOREIGN KEY (admin_id) REFERENCES admins(id) ON DELETE SET NULL,
+    INDEX idx_blog_status_published (status, published_at),
+    FULLTEXT INDEX ft_blog_search (title, excerpt, body)
+) ENGINE=InnoDB;
+
+CREATE TABLE gallery (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(160) NOT NULL,
+    category VARCHAR(100) NOT NULL,
+    media_type ENUM('image','video') NOT NULL DEFAULT 'image',
+    file_path VARCHAR(255) NOT NULL,
+    thumbnail_path VARCHAR(255) NULL,
+    alt_text VARCHAR(180) NULL,
+    status ENUM('draft','published') NOT NULL DEFAULT 'published',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_gallery_category_status (category, status)
+) ENGINE=InnoDB;
+
+CREATE TABLE donations (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    donor_name VARCHAR(140) NOT NULL,
+    donor_email VARCHAR(180) NULL,
+    amount DECIMAL(12,2) NOT NULL,
+    currency CHAR(3) NOT NULL DEFAULT 'NGN',
+    method ENUM('bank_transfer','card','cash','ussd','paypal') NOT NULL,
+    transaction_ref VARCHAR(120) NULL UNIQUE,
+    purpose VARCHAR(160) NULL,
+    status ENUM('pending','paid','failed','refunded') NOT NULL DEFAULT 'pending',
+    ip_address VARCHAR(64) NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_donations_status_date (status, created_at),
+    INDEX idx_donations_email (donor_email)
+) ENGINE=InnoDB;
+
+CREATE TABLE prayer_requests (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(140) NOT NULL,
+    email VARCHAR(180) NULL,
+    request TEXT NOT NULL,
+    visibility ENUM('public','private') NOT NULL DEFAULT 'private',
+    status ENUM('pending','approved','answered','rejected') NOT NULL DEFAULT 'pending',
+    moderated_by BIGINT UNSIGNED NULL,
+    ip_address VARCHAR(64) NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (moderated_by) REFERENCES admins(id) ON DELETE SET NULL,
+    INDEX idx_prayers_status_visibility (status, visibility)
+) ENGINE=InnoDB;
+
+CREATE TABLE contact_messages (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(140) NOT NULL,
+    email VARCHAR(180) NOT NULL,
+    phone VARCHAR(40) NULL,
+    subject VARCHAR(180) NOT NULL,
+    message TEXT NOT NULL,
+    status ENUM('new','read','replied','archived') NOT NULL DEFAULT 'new',
+    replied_by BIGINT UNSIGNED NULL,
+    ip_address VARCHAR(64) NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (replied_by) REFERENCES admins(id) ON DELETE SET NULL,
+    INDEX idx_contact_status_date (status, created_at)
+) ENGINE=InnoDB;
+
+CREATE TABLE subscribers (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(180) NOT NULL UNIQUE,
+    name VARCHAR(120) NULL,
+    status ENUM('active','unsubscribed','bounced') NOT NULL DEFAULT 'active',
+    confirmation_token VARCHAR(120) NULL,
+    subscribed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_subscribers_status (status)
+) ENGINE=InnoDB;
+
+CREATE TABLE settings (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    setting_key VARCHAR(120) NOT NULL UNIQUE,
+    setting_value LONGTEXT NULL,
+    is_json TINYINT(1) NOT NULL DEFAULT 0,
+    updated_by BIGINT UNSIGNED NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (updated_by) REFERENCES admins(id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE activity_logs (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    admin_id BIGINT UNSIGNED NULL,
+    action VARCHAR(160) NOT NULL,
+    module VARCHAR(80) NOT NULL,
+    ip_address VARCHAR(64) NULL,
+    user_agent VARCHAR(255) NULL,
+    metadata JSON NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (admin_id) REFERENCES admins(id) ON DELETE SET NULL,
+    INDEX idx_activity_admin_date (admin_id, created_at),
+    INDEX idx_activity_module (module)
+) ENGINE=InnoDB;
+
+CREATE TABLE notifications (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    admin_id BIGINT UNSIGNED NULL,
+    title VARCHAR(160) NOT NULL,
+    body VARCHAR(320) NOT NULL,
+    type ENUM('info','success','warning','danger') NOT NULL DEFAULT 'info',
+    read_at DATETIME NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (admin_id) REFERENCES admins(id) ON DELETE CASCADE,
+    INDEX idx_notifications_admin_read (admin_id, read_at)
+) ENGINE=InnoDB;
+
+INSERT INTO admins (name, email, username, password_hash, role, status) VALUES
+('Super Administrator', 'admin@teampraise.org', 'superadmin', '$2y$12$replace_with_bcrypt_hash', 'super_admin', 'active');
+INSERT INTO sermon_categories (name, slug) VALUES ('Revival', 'revival'), ('Worship', 'worship'), ('Leadership', 'leadership');
+INSERT INTO blog_categories (name, slug) VALUES ('Event Update', 'event-update'), ('Devotional', 'devotional'), ('Worship', 'worship');`;
+
+            const HTACCESS = `Options -Indexes
+ServerSignature Off
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]
+</IfModule>
+
+<FilesMatch "(\.env|\.sql|\.log|composer\.json|composer\.lock)$">
+Require all denied
+</FilesMatch>
+
+<IfModule mod_headers.c>
+Header always set X-Frame-Options "SAMEORIGIN"
+Header always set X-Content-Type-Options "nosniff"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(self)"
+</IfModule>`;
+
+            const ENV_SAMPLE = `APP_NAME="Team Praise Official"
+APP_ENV=production
+APP_DEBUG=false
+APP_URL=https://your-domain.com
+APP_KEY=generate-a-64-character-random-key
+
+DB_HOST=localhost
+DB_PORT=3306
+DB_DATABASE=teampraise_app
+DB_USERNAME=cpanel_database_user
+DB_PASSWORD=change_this_password
+
+MAIL_HOST=smtp.your-domain.com
+MAIL_PORT=587
+MAIL_USERNAME=no-reply@your-domain.com
+MAIL_PASSWORD=change_this_password
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=no-reply@your-domain.com
+MAIL_FROM_NAME="Team Praise Official"
+
+UPLOAD_MAX_MB=8
+SESSION_LIFETIME=30
+RATE_LIMIT_LOGIN=5`;
+
+            const PROJECT_TREE = `/project-root
+|-- /admin
+|   |-- index.php
+|   |-- login.php
+|-- /assets
+|   |-- /css
+|   |-- /js
+|   |-- /images
+|   |-- /vendors
+|-- /config
+|   |-- app.php
+|   |-- database.php
+|-- /controllers
+|   |-- EventController.php
+|   |-- SermonController.php
+|   |-- BlogController.php
+|   |-- DonationController.php
+|   |-- PrayerController.php
+|-- /models
+|   |-- Event.php
+|   |-- Sermon.php
+|   |-- BlogPost.php
+|   |-- Donation.php
+|-- /views
+|   |-- /frontend
+|   |-- /admin
+|   |-- /partials
+|-- /core
+|   |-- Router.php
+|   |-- Controller.php
+|   |-- Model.php
+|   |-- Database.php
+|   |-- Request.php
+|   |-- Response.php
+|   |-- Csrf.php
+|-- /classes
+|   |-- Auth.php
+|   |-- Validator.php
+|   |-- Upload.php
+|   |-- Mailer.php
+|   |-- Cache.php
+|-- /api
+|   |-- v1.php
+|-- /uploads
+|   |-- /events
+|   |-- /sermons
+|   |-- /gallery
+|-- /database
+|   |-- schema.sql
+|   |-- seed.sql
+|-- /includes
+|-- /mail
+|-- /logs
+|-- .env
+|-- .htaccess
+|-- composer.json
+|-- index.php`;
+
+            const INSTALL_GUIDE = `1. Create a MySQL database in cPanel or on your VPS.
+2. Import database/schema.sql from the Developer Center download.
+3. Copy .env.example to .env and set database, mail, app URL, upload, and session values.
+4. Run composer require phpmailer/phpmailer vlucas/phpdotenv.
+5. Point the document root to /project-root/public or protect internal folders with the included .htaccess rules.
+6. Set /uploads and /logs permissions to 755 or to the hosting provider's recommended write permission.
+7. Create the first super admin with password_hash() and remove all installer files after setup.
+8. Configure SMTP, test contact emails, event registration confirmations, password reset emails, and newsletter sending.
+9. Enable HTTPS, daily database backup, malware scanning, log rotation, and CDN caching.
+10. For VPS deployments, place PHP-FPM behind Nginx or Apache, enable OPcache, configure fail2ban, and schedule cron jobs for newsletters and scheduled posts.`;
+
+            const PWA_MANIFEST = `{
+  "name": "Team Praise Official",
+  "short_name": "Team Praise",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#06142e",
+  "theme_color": "#1647e8",
+  "icons": [
+    { "src": "/assets/images/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/images/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}`;
+
+            const SERVICE_WORKER = `const CACHE_NAME = 'team-praise-v1';
+const ASSETS = ['/', '/assets/css/app.css', '/assets/js/app.js'];
+self.addEventListener('install', event => event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))));
+self.addEventListener('fetch', event => event.respondWith(caches.match(event.request).then(cached => cached || fetch(event.request))));`;
+
+            // Seed data keeps the single-file demo functional while matching the MySQL entities.
+            function seedData() {
+                return {
+                    settings: {
+                        siteName: 'Team Praise Official',
+                        tagline: 'One Sound. One Praise. One Kingdom.',
+                        nextEventDate: '2026-08-15T17:00:00+01:00',
+                        venue: 'Lagos Stadium Worship Experience',
+                        contactEmail: 'hello@teampraise.org',
+                        phone: '+234 800 000 0000',
+                        address: 'Lagos, Nigeria',
+                        maintenanceMode: false,
+                        smtpHost: 'smtp.teampraise.org',
+                        seoTitle: 'Team Praise Official - Worship and Revival Movement',
+                        seoDescription: 'Team Praise Official website, event management, sermons, prayer requests and donations.',
+                        social: { facebook: '#', instagram: '#', youtube: '#', x: '#' },
+                        bank: { bankName: 'First Bank of Nigeria', accountName: 'Team Praise Ministry', accountNumber: '0123456789' }
+                    },
+                    analytics: {
+                        visitors: 18420,
+                        pageViews: { home: 8300, about: 2400, events: 4200, sermons: 1850, gallery: 1640, blog: 1520, contact: 650, donation: 920, prayer: 730, livestream: 2100 },
+                        monthlyDonations: [420000, 510000, 390000, 730000, 680000, 910000, 1040000, 1280000, 970000, 1160000, 1320000, 1510000],
+                        monthlyAttendance: [600, 760, 830, 950, 1100, 1260, 1510, 1800, 2100, 2400, 2850, 3200]
+                    },
+                    admins: [
+                        { id: 'adm_1', name: 'Super Administrator', username: 'superadmin', email: 'admin@teampraise.org', role: 'super_admin', status: 'active', passwordHash: '', lastLoginAt: '' },
+                        { id: 'adm_2', name: 'Content Editor', username: 'editor', email: 'editor@teampraise.org', role: 'editor', status: 'active', passwordHash: '', lastLoginAt: '' }
+                    ],
+                    users: [
+                        { id: 'usr_1', name: 'Grace Adebayo', email: 'grace@example.com', phone: '+234 801 111 1111', role: 'member', status: 'active' },
+                        { id: 'usr_2', name: 'Daniel Okoro', email: 'daniel@example.com', phone: '+234 802 222 2222', role: 'volunteer', status: 'active' }
+                    ],
+                    events: [
+                        { id: 'evt_1', title: 'Team Praise 9: FIRE', slug: 'team-praise-9-fire', theme: 'Holy Spirit Fire', date: '2026-08-15T17:00:00+01:00', location: 'Lagos Stadium, Lagos', city: 'Lagos', capacity: 50000, status: 'published', category: 'Conference', flyer: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80', description: 'A stadium worship experience raising one sound of revival across Nigeria and beyond.' },
+                        { id: 'evt_2', title: 'Worship Leaders Summit', slug: 'worship-leaders-summit', theme: 'Servant Leadership', date: '2026-05-23T10:00:00+01:00', location: 'Victoria Island, Lagos', city: 'Lagos', capacity: 1200, status: 'published', category: 'Training', flyer: 'https://images.unsplash.com/photo-1515168833906-d2a3b82b3029?auto=format&fit=crop&w=1200&q=80', description: 'A full-day leadership intensive for choir directors, instrumentalists, and worship pastors.' },
+                        { id: 'evt_3', title: 'Choir Auditions and Bootcamp', slug: 'choir-auditions-bootcamp', theme: 'One Voice', date: '2026-04-18T09:00:00+01:00', location: 'Team Praise Rehearsal Hub', city: 'Lagos', capacity: 600, status: 'published', category: 'Auditions', flyer: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80', description: 'Auditions for sopranos, altos, tenors, instrumentalists, dancers, media, and volunteer teams.' },
+                        { id: 'evt_4', title: 'TP8 Thanksgiving Worship Night', slug: 'tp8-thanksgiving', theme: 'Gratitude', date: '2025-11-20T18:00:00+01:00', location: 'Mainland Worship Center', city: 'Lagos', capacity: 5000, status: 'past', category: 'Worship Night', flyer: 'https://images.unsplash.com/photo-1508973379184-7517410fb0bc?auto=format&fit=crop&w=1200&q=80', description: 'A night of thanksgiving, testimonies, worship, and ministry stories from Team Praise 8.' }
+                    ],
+                    eventRegistrations: [
+                        { id: 'reg_1', eventId: 'evt_1', fullName: 'Olumide Peters', email: 'olu@example.com', phone: '+234 803 333 3333', ministry: 'Choir', ticketCode: 'TP9-1001', status: 'confirmed', createdAt: '2026-01-15' },
+                        { id: 'reg_2', eventId: 'evt_1', fullName: 'Chidinma Nwosu', email: 'chi@example.com', phone: '+234 804 444 4444', ministry: 'Volunteer', ticketCode: 'TP9-1002', status: 'confirmed', createdAt: '2026-01-16' },
+                        { id: 'reg_3', eventId: 'evt_2', fullName: 'Emmanuel Ade', email: 'emmanuel@example.com', phone: '+234 805 555 5555', ministry: 'Worship Team', ticketCode: 'WLS-2001', status: 'pending', createdAt: '2026-02-01' }
+                    ],
+                    sermonCategories: ['Revival', 'Worship', 'Leadership', 'Prayer'],
+                    sermons: [
+                        { id: 'ser_1', title: 'The Fire of Worship', speaker: 'Pastor Tunde Balogun', category: 'Revival', type: 'video', date: '2026-01-14', mediaUrl: 'https://www.youtube.com/embed/live_stream?channel=UC4R8DWoMoI7CAwX8_LjQHig', downloadUrl: '#', downloads: 1240, status: 'published', description: 'A message on spiritual fire, unity, and true worship.' },
+                        { id: 'ser_2', title: 'Building A Sound That Carries', speaker: 'Minister Ada Cole', category: 'Worship', type: 'audio', date: '2025-12-02', mediaUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', downloadUrl: '#', downloads: 880, status: 'published', description: 'Practical teaching for music ministers and choir leaders.' },
+                        { id: 'ser_3', title: 'Serving Behind The Sound', speaker: 'Deacon Samuel Ibe', category: 'Leadership', type: 'video', date: '2025-10-20', mediaUrl: 'https://www.youtube.com/embed/ysz5S6PUM-U', downloadUrl: '#', downloads: 540, status: 'published', description: 'A ministry leadership teaching for volunteers and team leads.' }
+                    ],
+                    blogCategories: ['Event Update', 'Devotional', 'Worship', 'Leadership'],
+                    blogPosts: [
+                        { id: 'blog_1', title: 'Team Praise 9: Everything You Need To Know About FIRE', category: 'Event Update', tags: ['TP9','FIRE','Lagos'], status: 'published', publishDate: '2026-06-15', image: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1200&q=80', excerpt: 'Get ready for the most powerful edition yet with key details for attendees, volunteers, partners, and worship leaders.', body: '<p>Team Praise 9 gathers worshippers under one sound with a stadium experience designed for revival, excellence, and spiritual impact.</p>' },
+                        { id: 'blog_2', title: 'The Fire Of God And A Generation Of Worshippers', category: 'Devotional', tags: ['Acts 2','Prayer'], status: 'published', publishDate: '2026-06-10', image: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1200&q=80', excerpt: 'A devotional reflection on Acts 2 and what it means to burn with kingdom purpose in this generation.', body: '<p>Revival begins when consecrated people surrender their gifts, their voices, and their lives to the presence of God.</p>' },
+                        { id: 'blog_3', title: 'Five Worship Songs Shaping Team Praise 9', category: 'Worship', tags: ['Songs','Choir'], status: 'scheduled', publishDate: '2026-07-01', image: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1200&q=80', excerpt: 'From classic hymns to fresh anthems, these are songs setting the atmosphere for FIRE.', body: '<p>The set list is prayerfully curated to move from adoration to surrender, intercession, and celebration.</p>' }
+                    ],
+                    gallery: [
+                        { id: 'gal_1', title: 'Worship Night', category: 'Events', type: 'image', url: 'https://images.unsplash.com/photo-1508973379184-7517410fb0bc?auto=format&fit=crop&w=900&q=80', status: 'published' },
+                        { id: 'gal_2', title: 'Choir Anthem', category: 'Choir', type: 'image', url: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=900&q=80', status: 'published' },
+                        { id: 'gal_3', title: 'Stage Lights', category: 'Production', type: 'image', url: 'https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?auto=format&fit=crop&w=900&q=80', status: 'published' },
+                        { id: 'gal_4', title: 'Crowd Worship', category: 'Events', type: 'image', url: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=80', status: 'published' },
+                        { id: 'gal_5', title: 'Media Team', category: 'Volunteers', type: 'image', url: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=900&q=80', status: 'published' },
+                        { id: 'gal_6', title: 'Prayer Moment', category: 'Prayer', type: 'image', url: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=900&q=80', status: 'published' }
+                    ],
+                    donations: [
+                        { id: 'don_1', donorName: 'Anonymous Partner', donorEmail: '', amount: 250000, currency: 'NGN', method: 'bank_transfer', purpose: 'Team Praise 9', status: 'paid', date: '2026-01-12' },
+                        { id: 'don_2', donorName: 'Kingdom Builders Group', donorEmail: 'partners@example.com', amount: 750000, currency: 'NGN', method: 'bank_transfer', purpose: 'Production Support', status: 'paid', date: '2026-01-30' },
+                        { id: 'don_3', donorName: 'Miriam A.', donorEmail: 'miriam@example.com', amount: 50000, currency: 'NGN', method: 'card', purpose: 'Choir Welfare', status: 'pending', date: '2026-02-04' }
+                    ],
+                    prayerRequests: [
+                        { id: 'pray_1', name: 'Adaeze', email: 'ada@example.com', request: 'Praying for healing and renewed strength for my family.', visibility: 'public', status: 'approved', createdAt: '2026-01-22' },
+                        { id: 'pray_2', name: 'Private Request', email: 'private@example.com', request: 'Please pray for direction in ministry and family life.', visibility: 'private', status: 'pending', createdAt: '2026-01-25' },
+                        { id: 'pray_3', name: 'Joshua', email: 'joshua@example.com', request: 'Thank God for answered prayer and a restored relationship.', visibility: 'public', status: 'answered', createdAt: '2026-01-28' }
+                    ],
+                    contactMessages: [
+                        { id: 'msg_1', name: 'Kemi Lawal', email: 'kemi@example.com', phone: '+234 806 666 6666', subject: 'Volunteer Enquiry', message: 'How can I join the hospitality team?', status: 'new', createdAt: '2026-02-01' },
+                        { id: 'msg_2', name: 'Pastor Mark', email: 'mark@example.com', phone: '+234 807 777 7777', subject: 'Partnership', message: 'Our church would like to partner with Team Praise 9.', status: 'read', createdAt: '2026-02-02' }
+                    ],
+                    subscribers: [
+                        { id: 'sub_1', name: 'Olumide', email: 'olu@example.com', status: 'active', subscribedAt: '2026-01-15' },
+                        { id: 'sub_2', name: 'Chidinma', email: 'chi@example.com', status: 'active', subscribedAt: '2026-01-16' }
+                    ],
+                    notifications: [
+                        { id: 'not_1', title: 'New event registration', body: 'Olumide registered for Team Praise 9.', type: 'success', read: false, createdAt: new Date().toISOString() },
+                        { id: 'not_2', title: 'Prayer request waiting', body: 'A private prayer request needs moderation.', type: 'warning', read: false, createdAt: new Date().toISOString() }
+                    ],
+                    activityLogs: [
+                        { id: 'log_1', actor: 'System', action: 'Seeded application data', module: 'System', ip: '127.0.0.1', createdAt: new Date().toISOString() },
+                        { id: 'log_2', actor: 'Super Administrator', action: 'Published Team Praise 9 event', module: 'Events', ip: '127.0.0.1', createdAt: new Date().toISOString() }
+                    ]
+                };
+            }
+
+            function createToken() {
+                if (!window.crypto?.getRandomValues) return `${Date.now().toString(36)}${Math.random().toString(36).slice(2)}`;
+                const array = new Uint8Array(24);
+                crypto.getRandomValues(array);
+                return Array.from(array, b => b.toString(16).padStart(2, '0')).join('');
+            }
+
+            function escapeHtml(value) {
+                return String(value ?? '').replace(/[&<>'"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[char]));
+            }
+
+            function stripTags(value) {
+                return String(value || '').replace(/<[^>]*>/g, '');
+            }
+
+            function formatDate(value, options = {}) {
+                return new Intl.DateTimeFormat('en-NG', { month: 'short', day: 'numeric', year: 'numeric', ...options }).format(new Date(value));
+            }
+
+            function formatMoney(amount, currency = 'NGN') {
+                return new Intl.NumberFormat('en-NG', { style: 'currency', currency, maximumFractionDigits: 0 }).format(Number(amount || 0));
+            }
+
+            function uid(prefix) {
+                return `${prefix}_${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`;
+            }
+
+            async function sha256(input) {
+                if (!crypto.subtle) {
+                    let hash = 0;
+                    for (let index = 0; index < input.length; index++) hash = ((hash << 5) - hash) + input.charCodeAt(index) | 0;
+                    return `fallback_${Math.abs(hash)}`;
+                }
+                const encoded = new TextEncoder().encode(input);
+                const hash = await crypto.subtle.digest('SHA-256', encoded);
+                return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+            }
+
+            function loadData() {
+                const stored = localStorage.getItem(storageKey);
+                if (!stored) {
+                    const seeded = seedData();
+                    localStorage.setItem(storageKey, JSON.stringify(seeded));
+                    return seeded;
+                }
+                try { return JSON.parse(stored); } catch (error) { return seedData(); }
+            }
+
+            function saveData() {
+                localStorage.setItem(storageKey, JSON.stringify(app.data));
+            }
+
+            async function ensureAdminHashes() {
+                const demoPasswords = { superadmin: 'admin123', editor: 'editor123' };
+                let changed = false;
+                for (const admin of app.data.admins) {
+                    if (!admin.passwordHash && demoPasswords[admin.username]) {
+                        admin.passwordHash = await sha256(demoPasswords[admin.username]);
+                        changed = true;
+                    }
+                }
+                if (changed) saveData();
+            }
+
+            // Models AJAX CRUD latency with the Fetch API without requiring a backend server.
+            function fakeFetch(payload, delay = 420) {
+                return new Promise(resolve => setTimeout(async () => {
+                    const response = await fetch(`data:application/json,${encodeURIComponent(JSON.stringify(payload))}`);
+                    resolve(response);
+                }, delay));
+            }
+
+            function addLog(action, module) {
+                app.data.activityLogs.unshift({
+                    id: uid('log'),
+                    actor: app.currentAdmin?.name || 'Public Visitor',
+                    action,
+                    module,
+                    ip: 'browser-session',
+                    createdAt: new Date().toISOString()
+                });
+                app.data.activityLogs = app.data.activityLogs.slice(0, 120);
+                saveData();
+            }
+
+            function toast(message, type = 'success') {
+                const id = uid('toast');
+                const icon = type === 'danger' ? 'circle-exclamation' : type === 'warning' ? 'triangle-exclamation' : 'circle-check';
+                const html = `<div id="${id}" class="toast align-items-center text-bg-${type === 'danger' ? 'danger' : type === 'warning' ? 'warning' : 'success'} border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex"><div class="toast-body"><i class="fa-solid fa-${icon} me-2"></i>${escapeHtml(message)}</div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button></div>
+                </div>`;
+                document.getElementById('toastHost').insertAdjacentHTML('beforeend', html);
+                const element = document.getElementById(id);
+                const instance = new bootstrap.Toast(element, { delay: 3400 });
+                instance.show();
+                element.addEventListener('hidden.bs.toast', () => element.remove());
+            }
+
+            function csrfInput() {
+                return `<input type="hidden" name="csrf_token" value="${app.csrfToken}">`;
+            }
+
+            function validateCsrf(form) {
+                return form?.querySelector('[name="csrf_token"]')?.value === app.csrfToken;
+            }
+
+            function secureText(value, max = 5000) {
+                return stripTags(String(value || '').trim().slice(0, max));
+            }
+
+            function validateUpload(file, allowed = ['jpg','jpeg','png','webp','mp4','mp3','pdf'], maxMb = 8) {
+                if (!file) return { ok: true };
+                const ext = file.name.split('.').pop().toLowerCase();
+                if (!allowed.includes(ext)) return { ok: false, message: 'File type is not allowed.' };
+                if (file.size > maxMb * 1024 * 1024) return { ok: false, message: `File must be ${maxMb}MB or less.` };
+                return { ok: true };
+            }
+
+            function setTheme(theme) {
+                document.documentElement.setAttribute('data-bs-theme', theme);
+                localStorage.setItem('tp_theme', theme);
+            }
+
+            function toggleTheme() {
+                const current = document.documentElement.getAttribute('data-bs-theme') || 'light';
+                setTheme(current === 'dark' ? 'light' : 'dark');
+            }
+
+            function trackPageView(page) {
+                if (!app.data.analytics.pageViews[page]) app.data.analytics.pageViews[page] = 0;
+                app.data.analytics.pageViews[page] += 1;
+                app.data.analytics.visitors += 1;
+                saveData();
+            }
+
+            function publicNavLinks() {
+                document.querySelectorAll('#publicMenu .nav-link[data-page]').forEach(link => {
+                    link.classList.toggle('active', link.dataset.page === app.route);
+                });
+            }
+
+            function publicFooter() {
+                const settings = app.data.settings;
+                document.getElementById('publicFooter').innerHTML = `<div class="container">
+                    <div class="row g-5 align-items-start">
+                        <div class="col-lg-4">
+                            <div class="d-flex align-items-center gap-3 mb-3"><span class="brand-mark"><i class="fa-solid fa-music"></i></span><div><h4 class="mb-0 text-white fw-black">${escapeHtml(settings.siteName)}</h4><div class="text-gold fw-bold">${escapeHtml(settings.tagline)}</div></div></div>
+                            <p class="mb-4">A worship and revival movement raising one sound across Nigeria and the nations.</p>
+                            <div class="d-flex gap-3"><a href="${settings.social.facebook}" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a><a href="${settings.social.instagram}" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a><a href="${settings.social.youtube}" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a><a href="${settings.social.x}" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a></div>
+                        </div>
+                        <div class="col-6 col-lg-2"><h6 class="text-white fw-bold mb-3">Explore</h6><div class="d-grid gap-2"><a href="#about" data-page="about">About</a><a href="#events" data-page="events">Events</a><a href="#sermons" data-page="sermons">Sermons</a><a href="#gallery" data-page="gallery">Gallery</a></div></div>
+                        <div class="col-6 col-lg-2"><h6 class="text-white fw-bold mb-3">Ministry</h6><div class="d-grid gap-2"><a href="#prayer" data-page="prayer">Prayer Wall</a><a href="#donation" data-page="donation">Partner Giving</a><a href="#livestream" data-page="livestream">Livestream</a><a href="#blog" data-page="blog">Blog</a></div></div>
+                        <div class="col-lg-4"><h6 class="text-white fw-bold mb-3">Newsletter</h6><p>Receive worship updates, event reminders, sermons, and ministry stories.</p><form class="newsletter-form d-flex gap-2">${csrfInput()}<input class="form-control" name="email" type="email" placeholder="Email address" required><button class="btn btn-gold" type="submit">Subscribe</button></form></div>
+                    </div>
+                    <hr class="border-secondary my-5"><div class="d-flex flex-column flex-md-row justify-content-between gap-2 small"><span>Copyright ${new Date().getFullYear()} Team Praise Official. All rights reserved.</span><span>Privacy ready. Sitemap ready. PWA ready.</span></div>
+                </div>`;
+            }
+
+            function renderPage(page) {
+                app.route = pages.includes(page) ? page : 'home';
+                document.getElementById('adminRoot').classList.add('d-none');
+                document.getElementById('app').classList.remove('d-none');
+                document.getElementById('publicNav').classList.remove('d-none');
+                document.getElementById('publicFooter').classList.remove('d-none');
+                trackPageView(app.route);
+                publicNavLinks();
+                publicFooter();
+                const templates = { home, about, events, sermons, gallery, blog, contact, donation, prayer, livestream };
+                document.getElementById('app').innerHTML = templates[app.route]();
+                attachPageHandlers(app.route);
+                revealOnScroll();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            function home() {
+                const settings = app.data.settings;
+                const latestEvents = app.data.events.filter(e => e.status === 'published').slice(0, 3).map(eventCard).join('');
+                const galleryPreview = app.data.gallery.slice(0, 6).map(galleryItem).join('');
+                return `<section class="hero" id="homeHero">
+                    <div class="container position-relative z-1 pt-5">
+                        <div class="col-xl-10 pt-5">
+                            <p class="section-kicker text-gold hero-animate mb-3">Official global worship movement</p>
+                            <h1 class="brand-lockup hero-animate mb-3">Team Praise</h1>
+                            <h2 class="hero-subline hero-animate mb-4">${escapeHtml(text[app.language]?.welcome || settings.tagline)}</h2>
+                            <p class="lead hero-animate mb-4 col-lg-8 text-white-50">Team Praise 9: FIRE gathers worshippers, choirs, musicians, dancers, volunteers, and partners for a stadium worship experience in Lagos.</p>
+                            <div class="d-flex flex-wrap gap-3 hero-animate mb-4"><a class="btn btn-gold btn-lg rounded-pill px-4" href="#events" data-page="events">Register For TP9</a><a class="btn btn-outline-gold btn-lg rounded-pill px-4" href="#livestream" data-page="livestream">Watch Live</a></div>
+                            <div class="hero-countdown hero-animate"><div class="text-uppercase small fw-bold text-white-50 mb-2">Next gathering begins in</div><div class="countdown-grid" id="homeCountdown"></div></div>
+                        </div>
+                    </div>
+                </section>
+                <section class="section-pad reveal"><div class="container"><div class="row align-items-end g-4 mb-5"><div class="col-lg-7"><div class="section-kicker">Upcoming experiences</div><h2 class="section-title">Gatherings designed for revival and excellence.</h2></div><div class="col-lg-5"><p class="lead-soft mb-0">Plan, register, serve, and stay connected with every worship experience from one modern platform.</p></div></div><div class="row g-4">${latestEvents}</div></div></section>
+                <section class="section-pad-sm bg-navy text-white reveal"><div class="container"><div class="row g-5 align-items-center"><div class="col-lg-5"><div class="section-kicker text-gold">Music ministry</div><h2 class="section-title">A stadium choir. One sound. One heart.</h2><p class="text-white-50 fs-5">Sopranos, altos, tenors, instrumentalists, dancers, media teams, and volunteers serve together with excellence and humility.</p><a class="btn btn-gold rounded-pill px-4" href="#events" data-page="events">Join Auditions</a></div><div class="col-lg-7"><div class="image-plane" style="background-image:url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1600&q=85')"></div></div></div></div></section>
+                <section class="section-pad reveal"><div class="container"><div class="row g-5 align-items-center"><div class="col-lg-6"><div class="ratio ratio-16x9 shadow-lg"><iframe loading="lazy" src="https://www.youtube.com/embed/ysz5S6PUM-U" title="Team Praise livestream preview" allowfullscreen></iframe></div></div><div class="col-lg-6"><div class="section-kicker">Livestream</div><h2 class="section-title">Online worship for every nation.</h2><p class="lead-soft">Embed YouTube Live, Facebook Live, countdowns, and moderated chat placeholders for viewers joining from anywhere.</p><a class="btn btn-royal rounded-pill px-4" href="#livestream" data-page="livestream">Open Livestream</a></div></div></div></section>
+                <section class="section-pad-sm reveal"><div class="container"><div class="row g-4"><div class="col-lg-6"><div class="card-premium p-4 h-100"><div class="section-kicker">Prayer request</div><h3 class="fw-black mb-3">Let our intercessory team stand with you.</h3><form class="prayer-form">${csrfInput()}<div class="row g-3"><div class="col-md-6"><input class="form-control" name="name" placeholder="Your name" required></div><div class="col-md-6"><input class="form-control" name="email" type="email" placeholder="Email"></div><div class="col-12"><textarea class="form-control" name="request" rows="4" placeholder="How can we pray?" required></textarea></div><div class="col-12"><select class="form-select" name="visibility"><option value="private">Private request</option><option value="public">Share on prayer wall</option></select></div><div class="col-12"><button class="btn btn-royal rounded-pill px-4" type="submit">Submit Prayer</button></div></div></form></div></div><div class="col-lg-6"><div class="card-premium p-4 h-100"><div class="section-kicker">Newsletter</div><h3 class="fw-black mb-3">Get worship updates first.</h3><p class="lead-soft">Receive event notices, volunteer openings, sermon releases, and partnership stories.</p><form class="newsletter-form d-flex flex-column flex-sm-row gap-2">${csrfInput()}<input class="form-control" name="email" type="email" placeholder="Email address" required><button class="btn btn-gold" type="submit">Subscribe</button></form></div></div></div></div></section>
+                <section class="section-pad bg-white reveal"><div class="container"><div class="row align-items-end g-4 mb-5"><div class="col-lg-7"><div class="section-kicker">Testimonies</div><h2 class="section-title">Lives marked by worship.</h2></div><div class="col-lg-5"><p class="lead-soft mb-0">Stories from participants, choir members, volunteers, and partners.</p></div></div>${testimonials()}</div></section>
+                <section class="section-pad reveal"><div class="container"><div class="d-flex flex-column flex-lg-row justify-content-between gap-3 mb-4"><div><div class="section-kicker">Gallery</div><h2 class="section-title">Moments from the movement.</h2></div><a class="btn btn-outline-primary align-self-lg-end rounded-pill" href="#gallery" data-page="gallery">View Gallery</a></div><div class="masonry">${galleryPreview}</div></div></section>`;
+            }
+
+            function about() {
+                return `<section class="section-pad pt-5 mt-5"><div class="container pt-5"><div class="row g-5 align-items-center"><div class="col-lg-7 reveal"><div class="section-kicker">About Team Praise</div><h1 class="section-title">A movement of worship, prayer, unity, and revival.</h1><p class="lead-soft mt-4">From TP1 to TP9, Team Praise has gathered worshippers around the presence of God, equipping music ministers and creating free worship experiences for communities.</p></div><div class="col-lg-5 reveal"><div class="card-premium p-4"><h3 class="fw-black">Vision</h3><p class="lead-soft">To raise a generation that worships in spirit and in truth, igniting revival across Nigeria and beyond.</p><h3 class="fw-black mt-4">Mission</h3><p class="lead-soft mb-0">To host excellent worship experiences, train ministry teams, support communities, and amplify kingdom sound globally.</p></div></div></div></div></section>
+                <section class="section-pad-sm reveal"><div class="container"><div class="row g-4 text-center"><div class="col-6 col-lg-3"><h3 class="section-title counter" data-count="90000">0</h3><p class="fw-bold text-muted">Lives Reached</p></div><div class="col-6 col-lg-3"><h3 class="section-title counter" data-count="9">0</h3><p class="fw-bold text-muted">Editions</p></div><div class="col-6 col-lg-3"><h3 class="section-title counter" data-count="500">0</h3><p class="fw-bold text-muted">Choir Members</p></div><div class="col-6 col-lg-3"><h3 class="section-title counter" data-count="15">0</h3><p class="fw-bold text-muted">Nations Reached</p></div></div></div></section>
+                <section class="section-pad bg-navy text-white reveal"><div class="container"><div class="row g-5"><div class="col-lg-5"><div class="section-kicker text-gold">History</div><h2 class="section-title">From a local worship night to a global worship signal.</h2></div><div class="col-lg-7"><p class="text-white-50 fs-5 lh-lg">Team Praise began with a simple hunger to see believers worship together without barriers. Each edition expanded in excellence, partnerships, choir participation, and spiritual impact. TP9: FIRE continues the assignment with a call to awakening, unity, and bold worship.</p></div></div></div></section>
+                <section class="section-pad reveal"><div class="container"><div class="row align-items-end g-4 mb-5"><div class="col-lg-8"><div class="section-kicker">Leadership</div><h2 class="section-title">Servant leaders carrying the sound.</h2></div></div><div class="row g-4">${['Pastor Tunde Balogun|Convener','Minister Ada Cole|Music Director','Deacon Samuel Ibe|Operations Lead','Grace Adebayo|Prayer Coordinator'].map(item => { const [name, role] = item.split('|'); return `<div class="col-md-6 col-lg-3"><div class="card-premium p-4 text-center h-100"><div class="mx-auto rounded-circle bg-primary-subtle text-primary d-grid place-items-center mb-3" style="width:82px;height:82px"><i class="fa-solid fa-user-tie fa-2x"></i></div><h5 class="fw-black mb-1">${name}</h5><p class="text-muted mb-0">${role}</p></div></div>` }).join('')}</div></div></section>
+                <section class="section-pad-sm reveal"><div class="container"><div class="row g-4">${['Revival Worship','Unity In Praise','Excellence In Service','Prayer And Discipleship','Generosity','Global Impact'].map(value => `<div class="col-md-6 col-lg-4"><div class="d-flex gap-3"><i class="fa-solid fa-circle-check text-royal mt-1"></i><div><h5 class="fw-black">${value}</h5><p class="lead-soft small">A core value shaping our culture, teams, and ministry operations.</p></div></div></div>`).join('')}</div></div></section>`;
+            }
+
+            function events() {
+                const upcoming = app.data.events.filter(e => e.status === 'published').sort((a,b) => new Date(a.date) - new Date(b.date)).map(eventCard).join('');
+                const past = app.data.events.filter(e => e.status === 'past').map(eventCard).join('');
+                const calendar = app.data.events.map(e => `<li class="list-group-item d-flex justify-content-between align-items-center"><span><strong>${escapeHtml(e.title)}</strong><br><small class="text-muted">${formatDate(e.date)} - ${escapeHtml(e.location)}</small></span><span class="badge text-bg-${e.status === 'past' ? 'secondary' : 'primary'}">${escapeHtml(e.status)}</span></li>`).join('');
+                return `<section class="section-pad pt-5 mt-5"><div class="container pt-5"><div class="row g-5 align-items-end"><div class="col-lg-8 reveal"><div class="section-kicker">Events</div><h1 class="section-title">Register, plan, and serve at every Team Praise gathering.</h1><p class="lead-soft mt-4">Browse upcoming events, review past gatherings, open event details, register attendees, and follow countdown timers.</p></div><div class="col-lg-4 reveal"><div class="card-premium p-4"><div class="section-kicker">Next event</div><h4 class="fw-black">Team Praise 9: FIRE</h4><div class="countdown-grid text-center" id="eventsCountdown"></div></div></div></div></div></section>
+                <section class="section-pad-sm reveal"><div class="container"><ul class="nav nav-pills gap-2 mb-4" id="eventTabs"><li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#upcomingEvents" type="button">Upcoming</button></li><li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#pastEvents" type="button">Past</button></li><li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#calendarEvents" type="button">Calendar</button></li></ul><div class="tab-content"><div class="tab-pane fade show active" id="upcomingEvents"><div class="row g-4">${upcoming || emptyState('No upcoming events yet.')}</div></div><div class="tab-pane fade" id="pastEvents"><div class="row g-4">${past || emptyState('No past events yet.')}</div></div><div class="tab-pane fade" id="calendarEvents"><div class="card-premium p-3"><ul class="list-group list-group-flush">${calendar}</ul></div></div></div></div></section>`;
+            }
+
+            function sermons() {
+                const categories = ['All', ...app.data.sermonCategories].map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('');
+                return `<section class="section-pad pt-5 mt-5"><div class="container pt-5"><div class="row g-5 align-items-end"><div class="col-lg-8 reveal"><div class="section-kicker">Sermons</div><h1 class="section-title">Audio, video, search, categories, and downloads.</h1><p class="lead-soft mt-4">Grow through worship teachings, leadership messages, prayer sessions, and embedded video sermons.</p></div><div class="col-lg-4 reveal"><div class="ratio ratio-16x9 shadow"><iframe loading="lazy" src="https://www.youtube.com/embed/ysz5S6PUM-U" title="Featured sermon" allowfullscreen></iframe></div></div></div></div></section>
+                <section class="section-pad-sm reveal"><div class="container"><div class="row g-3 mb-4"><div class="col-md-8"><input class="form-control form-control-lg" id="sermonSearch" placeholder="Search sermons, speakers, or descriptions"></div><div class="col-md-4"><select class="form-select form-select-lg" id="sermonCategory">${categories}</select></div></div><div class="row g-4" id="sermonResults"></div></div></section>`;
+            }
+
+            function gallery() {
+                const filters = ['All', ...new Set(app.data.gallery.map(g => g.category))].map((cat, index) => `<button class="btn ${index === 0 ? 'btn-royal' : 'btn-outline-primary'} rounded-pill gallery-filter" data-filter="${escapeHtml(cat)}">${escapeHtml(cat)}</button>`).join('');
+                return `<section class="section-pad pt-5 mt-5"><div class="container pt-5"><div class="row g-5 align-items-end"><div class="col-lg-8 reveal"><div class="section-kicker">Gallery</div><h1 class="section-title">Masonry media gallery with filters and lightbox.</h1><p class="lead-soft mt-4">Browse images, video placeholders, ministry teams, production, prayer moments, and past worship nights.</p></div><div class="col-lg-4 reveal"><div class="d-flex flex-wrap gap-2">${filters}</div></div></div></div></section><section class="section-pad-sm reveal"><div class="container"><div class="masonry" id="galleryGrid">${app.data.gallery.map(galleryItem).join('')}</div></div></section>`;
+            }
+
+            function blog() {
+                const cats = ['All', ...app.data.blogCategories].map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('');
+                return `<section class="section-pad pt-5 mt-5"><div class="container pt-5"><div class="row g-5 align-items-end"><div class="col-lg-8 reveal"><div class="section-kicker">Blog</div><h1 class="section-title">Updates, devotionals, worship stories, and comments.</h1><p class="lead-soft mt-4">A modern blog layout with categories, tags, related posts, search, and publishing workflows.</p></div><div class="col-lg-4 reveal"><div class="card-premium p-4"><label class="form-label fw-bold">Search posts</label><input class="form-control mb-3" id="blogSearch" placeholder="Search blog"><select class="form-select" id="blogCategory">${cats}</select></div></div></div></div></section><section class="section-pad-sm reveal"><div class="container"><div class="row g-4" id="blogResults"></div></div></section>`;
+            }
+
+            function contact() {
+                const s = app.data.settings;
+                return `<section class="section-pad pt-5 mt-5"><div class="container pt-5"><div class="row g-5"><div class="col-lg-6 reveal"><div class="section-kicker">Contact</div><h1 class="section-title">Connect with Team Praise.</h1><p class="lead-soft mt-4">Send messages, partnership requests, booking enquiries, and volunteer questions. Admins can reply and archive messages from the dashboard.</p><div class="d-grid gap-3 mt-4"><div><strong>Email:</strong> ${escapeHtml(s.contactEmail)}</div><div><strong>Phone:</strong> ${escapeHtml(s.phone)}</div><div><strong>Office:</strong> ${escapeHtml(s.address)}</div></div><div class="d-flex gap-3 mt-4"><a class="btn btn-outline-primary rounded-pill" href="https://wa.me/2348000000000" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp me-2"></i>WhatsApp</a><a class="btn btn-royal rounded-pill" href="#livestream" data-page="livestream">Livestream</a></div></div><div class="col-lg-6 reveal"><div class="card-premium p-4"><h3 class="fw-black mb-3">Send a message</h3><form class="contact-form">${csrfInput()}<div class="row g-3"><div class="col-md-6"><input class="form-control" name="name" placeholder="Full name" required></div><div class="col-md-6"><input class="form-control" name="email" type="email" placeholder="Email address" required></div><div class="col-md-6"><input class="form-control" name="phone" placeholder="Phone"></div><div class="col-md-6"><input class="form-control" name="subject" placeholder="Subject" required></div><div class="col-12"><textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea></div><div class="col-12"><button class="btn btn-gold rounded-pill px-4" type="submit">Send Message</button></div></div></form></div></div></div></div></section><section class="section-pad-sm reveal"><div class="container"><div class="ratio ratio-21x9 shadow-lg"><iframe loading="lazy" src="https://maps.google.com/maps?q=Lagos%20Nigeria&t=&z=12&ie=UTF8&iwloc=&output=embed" title="Team Praise Lagos map"></iframe></div></div></section>`;
+            }
+
+            function donation() {
+                const b = app.data.settings.bank;
+                return `<section class="section-pad pt-5 mt-5"><div class="container pt-5"><div class="row g-5 align-items-start"><div class="col-lg-6 reveal"><div class="section-kicker">Partner giving</div><h1 class="section-title">Sow into worship, revival, and souls.</h1><p class="lead-soft mt-4">Your generosity helps host free worship experiences, train choir members, support volunteers, and take the sound to more cities.</p><div class="card-premium p-4 mt-4"><h4 class="fw-black">Bank Transfer</h4><p class="mb-1"><strong>Bank:</strong> ${escapeHtml(b.bankName)}</p><p class="mb-1"><strong>Account Name:</strong> ${escapeHtml(b.accountName)}</p><p class="mb-0"><strong>Account Number:</strong> ${escapeHtml(b.accountNumber)}</p></div></div><div class="col-lg-6 reveal"><div class="card-premium p-4"><h3 class="fw-black mb-3">Online Giving Form</h3><form class="donation-form">${csrfInput()}<div class="row g-3"><div class="col-md-6"><input class="form-control" name="donorName" placeholder="Donor name" required></div><div class="col-md-6"><input class="form-control" name="donorEmail" type="email" placeholder="Email"></div><div class="col-md-6"><input class="form-control" name="amount" type="number" min="100" placeholder="Amount" required></div><div class="col-md-6"><select class="form-select" name="method"><option value="bank_transfer">Bank Transfer</option><option value="card">Card Payment Placeholder</option><option value="ussd">USSD Placeholder</option></select></div><div class="col-12"><input class="form-control" name="purpose" placeholder="Purpose, example Team Praise 9"></div><div class="col-12"><button class="btn btn-gold rounded-pill px-4" type="submit">Record Gift</button></div><div class="col-12"><small class="text-muted">Payment gateway integration placeholder for Paystack, Flutterwave, Stripe, or bank webhooks.</small></div></div></form></div></div></div></div></section>`;
+            }
+
+            function prayer() {
+                const wall = app.data.prayerRequests.filter(p => p.visibility === 'public' && ['approved','answered'].includes(p.status)).map(p => `<div class="col-md-6"><div class="card-premium p-4 h-100"><div class="d-flex justify-content-between mb-3"><strong>${escapeHtml(p.name)}</strong><span class="badge text-bg-${p.status === 'answered' ? 'success' : 'primary'}">${escapeHtml(p.status)}</span></div><p class="lead-soft mb-0">${escapeHtml(p.request)}</p></div></div>`).join('');
+                return `<section class="section-pad pt-5 mt-5"><div class="container pt-5"><div class="row g-5"><div class="col-lg-6 reveal"><div class="section-kicker">Prayer Wall</div><h1 class="section-title">Submit requests and celebrate answered prayers.</h1><p class="lead-soft mt-4">Requests can be public or private. Public requests require admin moderation before appearing on the prayer wall.</p><form class="prayer-form card-premium p-4 mt-4">${csrfInput()}<div class="row g-3"><div class="col-md-6"><input class="form-control" name="name" placeholder="Your name" required></div><div class="col-md-6"><input class="form-control" name="email" type="email" placeholder="Email"></div><div class="col-12"><textarea class="form-control" name="request" rows="5" placeholder="Prayer request" required></textarea></div><div class="col-12"><select class="form-select" name="visibility"><option value="private">Private to prayer team</option><option value="public">Public after moderation</option></select></div><div class="col-12"><button class="btn btn-royal rounded-pill px-4" type="submit">Submit Request</button></div></div></form></div><div class="col-lg-6 reveal"><div class="row g-4">${wall || emptyState('No public requests yet.')}</div></div></div></div></section>`;
+            }
+
+            function livestream() {
+                return `<section class="section-pad pt-5 mt-5"><div class="container pt-5"><div class="row g-5 align-items-end"><div class="col-lg-8 reveal"><div class="section-kicker">Livestream</div><h1 class="section-title">YouTube Live, Facebook Live, countdown, and live chat ready.</h1><p class="lead-soft mt-4">Connect online worshippers around the world with embedded live video and moderated engagement workflows.</p></div><div class="col-lg-4 reveal"><div class="card-premium p-4"><div class="section-kicker">Live countdown</div><div class="countdown-grid text-center" id="liveCountdown"></div></div></div></div></div></section><section class="section-pad-sm reveal"><div class="container"><div class="row g-4"><div class="col-lg-8"><div class="ratio ratio-16x9 shadow-lg"><iframe loading="lazy" src="https://www.youtube.com/embed/live_stream?channel=UC4R8DWoMoI7CAwX8_LjQHig" title="YouTube live placeholder" allowfullscreen></iframe></div><div class="mt-3 p-4 card-premium"><h5 class="fw-black">Facebook Live Embed Placeholder</h5><p class="lead-soft mb-0">Paste your Facebook Live plugin code in the production CMS livestream settings.</p></div></div><div class="col-lg-4"><div class="card-premium p-4 h-100"><h4 class="fw-black">Live Chat Placeholder</h4><div class="d-grid gap-3 mt-4"><div class="p-3 bg-body-tertiary rounded-3"><strong>Moderator</strong><br><span class="text-muted">Welcome to Team Praise Live.</span></div><div class="p-3 bg-body-tertiary rounded-3"><strong>Viewer</strong><br><span class="text-muted">Joining from Abuja.</span></div><div class="p-3 bg-body-tertiary rounded-3"><strong>Prayer Team</strong><br><span class="text-muted">Send prayer requests privately.</span></div></div></div></div></div></div></section>`;
+            }
+
+            function testimonials() {
+                const data = [
+                    ['Olumide', 'Participant', 'I encountered God like never before. A night of true revival and unity.'],
+                    ['Chidinma', 'Choir Member', 'The choir atmosphere gave me chills. Five hundred voices singing as one changed my life.'],
+                    ['Emmanuel', 'Volunteer', 'Team Praise was a spiritual firestorm. I came to serve and left deeply refreshed.']
+                ];
+                return `<div id="testimonialSlider" class="carousel slide" data-bs-ride="carousel"><div class="carousel-inner">${data.map((t, index) => `<div class="carousel-item ${index === 0 ? 'active' : ''}"><div class="card-premium p-5"><p class="display-6 fw-black lh-sm">"${escapeHtml(t[2])}"</p><div class="mt-4"><strong>${escapeHtml(t[0])}</strong><br><span class="text-muted">${escapeHtml(t[1])}</span></div></div></div>`).join('')}</div><button class="carousel-control-prev" type="button" data-bs-target="#testimonialSlider" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button><button class="carousel-control-next" type="button" data-bs-target="#testimonialSlider" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button></div>`;
+            }
+
+            function eventCard(event) {
+                const date = new Date(event.date);
+                const regCount = app.data.eventRegistrations.filter(r => r.eventId === event.id).length;
+                return `<div class="col-lg-4"><article class="card-premium h-100 overflow-hidden"><img loading="lazy" src="${escapeHtml(event.flyer)}" alt="${escapeHtml(event.title)}" style="height:230px;width:100%;object-fit:cover"><div class="p-4"><div class="d-flex gap-3 mb-3"><div class="event-date-box"><strong>${date.getDate()}</strong><span>${date.toLocaleDateString('en-NG', { month: 'short' })}</span></div><div><span class="badge text-bg-${event.status === 'past' ? 'secondary' : 'primary'} mb-2">${escapeHtml(event.category)}</span><h4 class="fw-black mb-1">${escapeHtml(event.title)}</h4><p class="text-muted small mb-0"><i class="fa-solid fa-location-dot me-1"></i>${escapeHtml(event.location)}</p></div></div><p class="lead-soft small">${escapeHtml(event.description)}</p><div class="d-flex justify-content-between align-items-center"><small class="text-muted">${regCount} registered</small><div class="btn-group"><button class="btn btn-sm btn-outline-primary" type="button" onclick="TP.showEvent('${event.id}')">Details</button>${event.status !== 'past' ? `<button class="btn btn-sm btn-gold" type="button" onclick="TP.registerEvent('${event.id}')">Register</button>` : ''}</div></div></div></article></div>`;
+            }
+
+            function galleryItem(item) {
+                return `<div class="masonry-item" data-category="${escapeHtml(item.category)}" onclick="TP.openGallery('${item.id}')"><img loading="lazy" src="${escapeHtml(item.url)}" alt="${escapeHtml(item.title)}"><div class="p-3 bg-body"><strong>${escapeHtml(item.title)}</strong><br><small class="text-muted">${escapeHtml(item.category)}</small></div></div>`;
+            }
+
+            function emptyState(message) {
+                return `<div class="col-12"><div class="card-premium p-5 text-center"><i class="fa-regular fa-folder-open fa-2x text-muted mb-3"></i><p class="lead-soft mb-0">${escapeHtml(message)}</p></div></div>`;
+            }
+
+            function attachPageHandlers(page) {
+                document.querySelectorAll('.newsletter-form').forEach(form => form.addEventListener('submit', handleNewsletter));
+                document.querySelectorAll('.contact-form').forEach(form => form.addEventListener('submit', handleContact));
+                document.querySelectorAll('.prayer-form').forEach(form => form.addEventListener('submit', handlePrayer));
+                document.querySelectorAll('.donation-form').forEach(form => form.addEventListener('submit', handleDonation));
+                if (['home','events','livestream'].includes(page)) startCountdowns();
+                if (page === 'about') animateCounters();
+                if (page === 'sermons') { renderSermons(); document.getElementById('sermonSearch').addEventListener('input', renderSermons); document.getElementById('sermonCategory').addEventListener('change', renderSermons); }
+                if (page === 'blog') { renderBlogPosts(); document.getElementById('blogSearch').addEventListener('input', renderBlogPosts); document.getElementById('blogCategory').addEventListener('change', renderBlogPosts); }
+                if (page === 'gallery') attachGalleryFilters();
+            }
+
+            function startCountdowns() {
+                updateCountdowns();
+                clearInterval(window.tpCountdownInterval);
+                window.tpCountdownInterval = setInterval(updateCountdowns, 1000);
+            }
+
+            function updateCountdowns() {
+                const target = new Date(app.data.settings.nextEventDate).getTime();
+                const diff = Math.max(0, target - Date.now());
+                const days = Math.floor(diff / 86400000);
+                const hours = Math.floor((diff % 86400000) / 3600000);
+                const minutes = Math.floor((diff % 3600000) / 60000);
+                const seconds = Math.floor((diff % 60000) / 1000);
+                const html = [['Days', days], ['Hours', hours], ['Minutes', minutes], ['Seconds', seconds]].map(([label, value]) => `<div class="countdown-unit"><strong>${String(value).padStart(label === 'Days' ? 3 : 2, '0')}</strong><span>${label}</span></div>`).join('');
+                ['homeCountdown','eventsCountdown','liveCountdown'].forEach(id => { const el = document.getElementById(id); if (el) el.innerHTML = html; });
+            }
+
+            function animateCounters() {
+                document.querySelectorAll('.counter').forEach(counter => {
+                    const target = Number(counter.dataset.count || 0);
+                    const duration = 1300;
+                    const start = performance.now();
+                    function tick(now) {
+                        const progress = Math.min((now - start) / duration, 1);
+                        counter.textContent = Math.floor(target * progress).toLocaleString('en-NG');
+                        if (progress < 1) requestAnimationFrame(tick);
+                    }
+                    requestAnimationFrame(tick);
+                });
+            }
+
+            function revealOnScroll() {
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('show'); });
+                }, { threshold: .13 });
+                document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            }
+
+            async function handleNewsletter(event) {
+                event.preventDefault();
+                const form = event.currentTarget;
+                if (!validateCsrf(form)) return toast('Security token expired. Refresh and try again.', 'danger');
+                const email = form.email.value.trim().toLowerCase();
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return toast('Enter a valid email address.', 'warning');
+                if (app.data.subscribers.some(s => s.email === email)) return toast('You are already subscribed.', 'warning');
+                await fakeFetch({ email });
+                app.data.subscribers.unshift({ id: uid('sub'), name: '', email, status: 'active', subscribedAt: new Date().toISOString().slice(0,10) });
+                addLog(`Newsletter subscriber added: ${email}`, 'Newsletter');
+                saveData();
+                form.reset();
+                toast('Subscription successful. Confirmation email queued.');
+            }
+
+            async function handleContact(event) {
+                event.preventDefault();
+                const form = event.currentTarget;
+                if (!validateCsrf(form)) return toast('Security token expired. Refresh and try again.', 'danger');
+                await fakeFetch({ status: 'queued' });
+                app.data.contactMessages.unshift({ id: uid('msg'), name: secureText(form.name.value, 140), email: secureText(form.email.value, 180), phone: secureText(form.phone.value, 40), subject: secureText(form.subject.value, 180), message: secureText(form.message.value, 2500), status: 'new', createdAt: new Date().toISOString().slice(0,10) });
+                addLog('New contact message submitted', 'Contact');
+                saveData();
+                form.reset();
+                Swal.fire('Message Sent', 'The ministry office has received your message.', 'success');
+            }
+
+            async function handlePrayer(event) {
+                event.preventDefault();
+                const form = event.currentTarget;
+                if (!validateCsrf(form)) return toast('Security token expired. Refresh and try again.', 'danger');
+                await fakeFetch({ status: 'queued' });
+                app.data.prayerRequests.unshift({ id: uid('pray'), name: secureText(form.name.value, 140), email: secureText(form.email.value || '', 180), request: secureText(form.request.value, 2500), visibility: form.visibility.value, status: form.visibility.value === 'public' ? 'pending' : 'pending', createdAt: new Date().toISOString().slice(0,10) });
+                addLog('Prayer request submitted', 'Prayer');
+                saveData();
+                form.reset();
+                toast('Prayer request submitted for ministry review.');
+            }
+
+            async function handleDonation(event) {
+                event.preventDefault();
+                const form = event.currentTarget;
+                if (!validateCsrf(form)) return toast('Security token expired. Refresh and try again.', 'danger');
+                const amount = Number(form.amount.value);
+                if (!amount || amount < 100) return toast('Enter a valid giving amount.', 'warning');
+                await fakeFetch({ status: 'pending_payment' });
+                app.data.donations.unshift({ id: uid('don'), donorName: secureText(form.donorName.value, 140), donorEmail: secureText(form.donorEmail.value || '', 180), amount, currency: 'NGN', method: form.method.value, purpose: secureText(form.purpose.value || 'General Giving', 160), status: form.method.value === 'bank_transfer' ? 'pending' : 'pending', date: new Date().toISOString().slice(0,10) });
+                addLog('Donation record created', 'Donations');
+                saveData();
+                form.reset();
+                Swal.fire('Giving Recorded', 'Payment integration placeholder is ready for gateway connection.', 'success');
+            }
+
+            function renderSermons() {
+                const query = (document.getElementById('sermonSearch')?.value || '').toLowerCase();
+                const category = document.getElementById('sermonCategory')?.value || 'All';
+                const results = app.data.sermons.filter(s => (category === 'All' || s.category === category) && [s.title, s.speaker, s.description].join(' ').toLowerCase().includes(query));
+                document.getElementById('sermonResults').innerHTML = results.map(sermon => `<div class="col-lg-4"><div class="card-premium p-4 h-100"><div class="d-flex justify-content-between mb-3"><span class="badge text-bg-primary">${escapeHtml(sermon.category)}</span><span class="text-muted small">${formatDate(sermon.date)}</span></div><h4 class="fw-black">${escapeHtml(sermon.title)}</h4><p class="text-muted">${escapeHtml(sermon.speaker)}</p><p class="lead-soft small">${escapeHtml(sermon.description)}</p>${sermon.type === 'audio' ? `<audio controls class="w-100"><source src="${escapeHtml(sermon.mediaUrl)}"></audio>` : `<div class="ratio ratio-16x9"><iframe loading="lazy" src="${escapeHtml(sermon.mediaUrl)}" title="${escapeHtml(sermon.title)}" allowfullscreen></iframe></div>`}<button class="btn btn-outline-primary rounded-pill mt-3" onclick="TP.downloadSermon('${sermon.id}')"><i class="fa-solid fa-download me-2"></i>Download (${sermon.downloads})</button></div></div>`).join('') || emptyState('No sermons match your search.');
+            }
+
+            function renderBlogPosts() {
+                const query = (document.getElementById('blogSearch')?.value || '').toLowerCase();
+                const category = document.getElementById('blogCategory')?.value || 'All';
+                const results = app.data.blogPosts.filter(p => p.status !== 'draft' && (category === 'All' || p.category === category) && [p.title, p.excerpt, p.tags.join(' ')].join(' ').toLowerCase().includes(query));
+                document.getElementById('blogResults').innerHTML = results.map(post => `<div class="col-lg-4"><article class="card-premium h-100 overflow-hidden"><img loading="lazy" src="${escapeHtml(post.image)}" alt="${escapeHtml(post.title)}" style="height:230px;width:100%;object-fit:cover"><div class="p-4"><div class="d-flex justify-content-between mb-2"><span class="badge text-bg-primary">${escapeHtml(post.category)}</span><small class="text-muted">${formatDate(post.publishDate)}</small></div><h4 class="fw-black">${escapeHtml(post.title)}</h4><p class="lead-soft small">${escapeHtml(post.excerpt)}</p><div class="d-flex flex-wrap gap-2 mb-3">${post.tags.map(tag => `<span class="badge rounded-pill text-bg-light">${escapeHtml(tag)}</span>`).join('')}</div><button class="btn btn-outline-primary rounded-pill" onclick="TP.openPost('${post.id}')">Read More</button></div></article></div>`).join('') || emptyState('No posts match your search.');
+            }
+
+            function attachGalleryFilters() {
+                document.querySelectorAll('.gallery-filter').forEach(button => button.addEventListener('click', () => {
+                    const filter = button.dataset.filter;
+                    document.querySelectorAll('.gallery-filter').forEach(btn => { btn.classList.remove('btn-royal'); btn.classList.add('btn-outline-primary'); });
+                    button.classList.add('btn-royal'); button.classList.remove('btn-outline-primary');
+                    document.querySelectorAll('#galleryGrid .masonry-item').forEach(item => item.style.display = filter === 'All' || item.dataset.category === filter ? 'block' : 'none');
+                }));
+            }
+
+            function modal(html) {
+                document.getElementById('globalModalContent').innerHTML = html;
+                bootstrap.Modal.getOrCreateInstance(document.getElementById('globalModal')).show();
+            }
+
+            window.TP = {
+                showEvent(id) {
+                    const e = app.data.events.find(item => item.id === id);
+                    if (!e) return;
+                    const regs = app.data.eventRegistrations.filter(r => r.eventId === id).length;
+                    modal(`<div class="modal-header"><h4 class="modal-title fw-black">${escapeHtml(e.title)}</h4><button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body"><div class="row g-4"><div class="col-lg-6"><img class="rounded-4" src="${escapeHtml(e.flyer)}" alt="${escapeHtml(e.title)}"></div><div class="col-lg-6"><div class="section-kicker">${escapeHtml(e.theme)}</div><p class="lead-soft">${escapeHtml(e.description)}</p><ul class="list-unstyled d-grid gap-2"><li><i class="fa-regular fa-calendar me-2 text-royal"></i>${formatDate(e.date, { hour: '2-digit', minute: '2-digit' })}</li><li><i class="fa-solid fa-location-dot me-2 text-royal"></i>${escapeHtml(e.location)}</li><li><i class="fa-solid fa-users me-2 text-royal"></i>${regs} registered of ${Number(e.capacity).toLocaleString('en-NG')}</li></ul></div></div></div><div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>${e.status !== 'past' ? `<button class="btn btn-gold" onclick="TP.registerEvent('${e.id}')">Register</button>` : ''}</div>`);
+                },
+                registerEvent(id) {
+                    const e = app.data.events.find(item => item.id === id);
+                    if (!e) return;
+                    modal(`<div class="modal-header"><h4 class="modal-title fw-black">Register For ${escapeHtml(e.title)}</h4><button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><form id="eventRegisterForm"><div class="modal-body">${csrfInput()}<input type="hidden" name="eventId" value="${escapeHtml(e.id)}"><div class="row g-3"><div class="col-md-6"><label class="form-label">Full name</label><input class="form-control" name="fullName" required></div><div class="col-md-6"><label class="form-label">Email</label><input class="form-control" name="email" type="email" required></div><div class="col-md-6"><label class="form-label">Phone</label><input class="form-control" name="phone"></div><div class="col-md-6"><label class="form-label">Ministry team</label><select class="form-select" name="ministry"><option>Attendee</option><option>Choir</option><option>Instrumentalist</option><option>Dancer</option><option>Volunteer</option><option>Media</option></select></div></div></div><div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cancel</button><button class="btn btn-gold" type="submit">Confirm Registration</button></div></form>`);
+                    document.getElementById('eventRegisterForm').addEventListener('submit', async (event) => {
+                        event.preventDefault();
+                        const form = event.currentTarget;
+                        if (!validateCsrf(form)) return toast('Security token expired.', 'danger');
+                        await fakeFetch({ ok: true });
+                        const code = `${e.slug.slice(0, 3).toUpperCase()}-${Math.floor(1000 + Math.random() * 8999)}`;
+                        app.data.eventRegistrations.unshift({ id: uid('reg'), eventId: id, fullName: secureText(form.fullName.value, 140), email: secureText(form.email.value, 180), phone: secureText(form.phone.value, 40), ministry: secureText(form.ministry.value, 150), ticketCode: code, status: 'confirmed', createdAt: new Date().toISOString().slice(0,10) });
+                        addLog(`Registration confirmed for ${e.title}`, 'Events');
+                        saveData();
+                        bootstrap.Modal.getInstance(document.getElementById('globalModal')).hide();
+                        Swal.fire('Registration Confirmed', `Ticket code: ${code}. Confirmation email queued with PHPMailer in production.`, 'success');
+                    });
+                },
+                openGallery(id) {
+                    const item = app.data.gallery.find(g => g.id === id);
+                    if (!item) return;
+                    modal(`<div class="modal-header"><h4 class="modal-title fw-black">${escapeHtml(item.title)}</h4><button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body p-0"><img src="${escapeHtml(item.url)}" alt="${escapeHtml(item.title)}" style="width:100%;max-height:78vh;object-fit:cover"></div>`);
+                },
+                openPost(id) {
+                    const post = app.data.blogPosts.find(p => p.id === id);
+                    if (!post) return;
+                    const related = app.data.blogPosts.filter(p => p.id !== id && p.category === post.category).slice(0, 2).map(p => `<li><button class="btn btn-link p-0" onclick="TP.openPost('${p.id}')">${escapeHtml(p.title)}</button></li>`).join('') || '<li class="text-muted">No related posts yet.</li>';
+                    modal(`<div class="modal-header"><h4 class="modal-title fw-black">${escapeHtml(post.title)}</h4><button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body"><img class="rounded-4 mb-4" src="${escapeHtml(post.image)}" alt="${escapeHtml(post.title)}"><div class="d-flex gap-2 mb-3"><span class="badge text-bg-primary">${escapeHtml(post.category)}</span><span class="text-muted">${formatDate(post.publishDate)}</span></div><div class="lead-soft">${post.body}</div><hr><h5 class="fw-black">Comments</h5><form class="comment-form d-flex gap-2 mb-4">${csrfInput()}<input class="form-control" placeholder="Write a comment"><button class="btn btn-royal" type="submit">Post</button></form><h6 class="fw-black">Related Posts</h6><ul>${related}</ul></div>`);
+                    document.querySelector('.comment-form').addEventListener('submit', (event) => { event.preventDefault(); toast('Comment submitted for moderation.'); });
+                },
+                downloadSermon(id) {
+                    const sermon = app.data.sermons.find(s => s.id === id);
+                    if (!sermon) return;
+                    sermon.downloads += 1;
+                    addLog(`Sermon downloaded: ${sermon.title}`, 'Sermons');
+                    saveData();
+                    toast('Download request recorded.');
+                    renderSermons();
+                },
+                openEntityModal,
+                deleteEntity,
+                exportCsv,
+                downloadText,
+                generateSitemap,
+                logout,
+                renderAdminSection,
+                toggleTheme,
+                markNotificationRead(id) {
+                    const n = app.data.notifications.find(item => item.id === id);
+                    if (n) { n.read = true; saveData(); renderAdminShell(); }
+                }
+            };
+
+            function navigateFromHash() {
+                const hash = location.hash.replace('#', '') || 'home';
+                if (hash.startsWith('admin')) {
+                    const section = hash.split('/')[1] || 'dashboard';
+                    renderAdmin(section);
+                } else {
+                    renderPage(hash);
+                }
+            }
+
+            async function renderAdmin(section = 'dashboard') {
+                const session = getSession();
+                document.getElementById('app').classList.add('d-none');
+                document.getElementById('publicFooter').classList.add('d-none');
+                document.getElementById('publicNav').classList.add('d-none');
+                document.getElementById('adminRoot').classList.remove('d-none');
+                if (!session) {
+                    app.currentAdmin = null;
+                    renderLogin();
+                    return;
+                }
+                app.currentAdmin = app.data.admins.find(a => a.id === session.adminId) || null;
+                if (!app.currentAdmin) return renderLogin();
+                app.adminSection = section;
+                renderAdminShell();
+                renderAdminSection(section);
+            }
+
+            function getSession() {
+                try {
+                    const session = JSON.parse(localStorage.getItem(authKey) || sessionStorage.getItem(authKey) || 'null');
+                    if (!session || session.expiresAt < Date.now()) { localStorage.removeItem(authKey); sessionStorage.removeItem(authKey); return null; }
+                    return session;
+                } catch (error) { return null; }
+            }
+
+            function renderLogin() {
+                document.getElementById('adminRoot').innerHTML = `<section class="admin-login"><div class="glass rounded-5 p-4 p-md-5" style="max-width:980px;width:100%"><div class="row g-5 align-items-center"><div class="col-lg-6"><div class="brand-mark mb-4"><i class="fa-solid fa-music"></i></div><h1 class="display-5 fw-black">Secure Ministry Command Center</h1><p class="text-white-50 fs-5">Role-based access, hashed passwords, session timeout, rate-limited login, audit trail, and CSRF tokens are modeled in this single-page build.</p><div class="bg-dark bg-opacity-25 rounded-4 p-3 small"><strong>Demo access:</strong><br>superadmin / admin123<br>editor / editor123</div></div><div class="col-lg-6"><form class="bg-white text-dark rounded-4 p-4" id="loginForm">${csrfInput()}<h3 class="fw-black mb-3">Admin Login</h3><div class="mb-3"><label class="form-label">Username</label><input class="form-control form-control-lg" name="username" autocomplete="username" required></div><div class="mb-3"><label class="form-label">Password</label><input class="form-control form-control-lg" name="password" type="password" autocomplete="current-password" required></div><div class="d-flex justify-content-between align-items-center mb-4"><div class="form-check"><input class="form-check-input" type="checkbox" name="remember" id="remember"><label class="form-check-label" for="remember">Remember me</label></div><button class="btn btn-link p-0" type="button" id="forgotPassword">Forgot password?</button></div><button class="btn btn-royal btn-lg w-100" type="submit"><span class="login-label">Sign In</span><span class="spinner-border spinner-border-sm d-none ms-2"></span></button></form></div></div></div></section>`;
+                document.getElementById('loginForm').addEventListener('submit', handleLogin);
+                document.getElementById('forgotPassword').addEventListener('click', () => Swal.fire('Password Reset', 'Enter your admin email. In production PHPMailer sends a signed reset link.', 'info'));
+            }
+
+            async function handleLogin(event) {
+                event.preventDefault();
+                const form = event.currentTarget;
+                if (!validateCsrf(form)) return toast('Security token expired.', 'danger');
+                const rate = JSON.parse(localStorage.getItem(rateKey) || '{"attempts":0,"lockedUntil":0}');
+                if (rate.lockedUntil > Date.now()) return toast('Too many attempts. Try again later.', 'danger');
+                form.querySelector('.login-label').textContent = 'Checking';
+                form.querySelector('.spinner-border').classList.remove('d-none');
+                await fakeFetch({ auth: true }, 550);
+                const username = form.username.value.trim();
+                const passwordHash = await sha256(form.password.value);
+                const admin = app.data.admins.find(a => a.username === username && a.passwordHash === passwordHash && a.status === 'active');
+                if (!admin) {
+                    rate.attempts += 1;
+                    if (rate.attempts >= 5) rate.lockedUntil = Date.now() + 10 * 60 * 1000;
+                    localStorage.setItem(rateKey, JSON.stringify(rate));
+                    form.querySelector('.login-label').textContent = 'Sign In';
+                    form.querySelector('.spinner-border').classList.add('d-none');
+                    return toast('Invalid credentials or inactive account.', 'danger');
+                }
+                localStorage.removeItem(rateKey);
+                admin.lastLoginAt = new Date().toISOString();
+                app.currentAdmin = admin;
+                const session = { adminId: admin.id, csrf: app.csrfToken, expiresAt: Date.now() + (form.remember.checked ? 7 * 86400000 : 30 * 60000) };
+                (form.remember.checked ? localStorage : sessionStorage).setItem(authKey, JSON.stringify(session));
+                addLog('Admin signed in', 'Authentication');
+                saveData();
+                location.hash = '#admin/dashboard';
+                renderAdmin('dashboard');
+            }
+
+            function logout() {
+                localStorage.removeItem(authKey);
+                sessionStorage.removeItem(authKey);
+                addLog('Admin signed out', 'Authentication');
+                location.hash = '#home';
+            }
+
+            function renderAdminShell() {
+                const nav = [
+                    ['dashboard','fa-gauge-high','Dashboard'], ['cms','fa-layer-group','CMS'], ['events','fa-calendar-days','Events'], ['sermons','fa-podcast','Sermons'], ['blog','fa-newspaper','Blog'], ['gallery','fa-images','Gallery'], ['users','fa-users-gear','Users'], ['donations','fa-hand-holding-dollar','Donations'], ['contacts','fa-inbox','Contacts'], ['prayers','fa-hands-praying','Prayer'], ['newsletter','fa-envelope-open-text','Newsletter'], ['settings','fa-sliders','Settings'], ['developer','fa-code','Developer']
+                ];
+                const unread = app.data.notifications.filter(n => !n.read).length;
+                document.getElementById('adminRoot').innerHTML = `<section class="admin-shell"><aside class="admin-sidebar"><div class="d-flex align-items-center gap-3 p-2 mb-3"><span class="brand-mark"><i class="fa-solid fa-music"></i></span><div><div class="fw-black text-white">Team Praise</div><small class="text-gold fw-bold">Admin Suite</small></div></div><nav class="nav flex-column">${nav.map(item => `<a class="nav-link ${app.adminSection === item[0] ? 'active' : ''}" href="#admin/${item[0]}" data-admin="${item[0]}"><i class="fa-solid ${item[1]}"></i><span>${item[2]}</span></a>`).join('')}</nav></aside><main class="admin-main"><header class="admin-topbar p-3 p-lg-4"><div class="d-flex flex-wrap justify-content-between align-items-center gap-3"><div><h4 class="fw-black mb-0 text-capitalize">${escapeHtml(app.adminSection)}</h4><small class="text-muted">Logged in as ${escapeHtml(app.currentAdmin.name)} (${escapeHtml(app.currentAdmin.role)})</small></div><div class="d-flex align-items-center gap-2"><select class="form-select form-select-sm" id="languageSelect" style="width:auto"><option value="en">EN</option><option value="yo">YO</option></select><button class="btn btn-outline-secondary position-relative" type="button" data-bs-toggle="dropdown"><i class="fa-regular fa-bell"></i>${unread ? `<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-bg-danger">${unread}</span>` : ''}</button><div class="dropdown-menu dropdown-menu-end p-2" style="min-width:320px">${app.data.notifications.slice(0,5).map(n => `<button class="dropdown-item rounded-3 ${n.read ? '' : 'fw-bold'}" onclick="TP.markNotificationRead('${n.id}')"><span class="badge text-bg-${n.type} me-2">${n.type}</span>${escapeHtml(n.title)}<br><small class="text-muted">${escapeHtml(n.body)}</small></button>`).join('') || '<span class="dropdown-item-text">No notifications</span>'}</div><button class="btn btn-outline-secondary" onclick="TP.toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i></button><button class="btn btn-gold" onclick="TP.logout()"><i class="fa-solid fa-right-from-bracket me-1"></i>Logout</button></div></div></header><div class="p-3 p-lg-4" id="adminContent"></div></main></section>`;
+                document.querySelectorAll('[data-admin]').forEach(link => link.addEventListener('click', event => { app.adminSection = event.currentTarget.dataset.admin; }));
+                const select = document.getElementById('languageSelect');
+                select.value = app.language;
+                select.addEventListener('change', () => { app.language = select.value; localStorage.setItem('tp_language', app.language); toast('Language placeholder updated.'); });
+            }
+
+            // Every admin module passes through RBAC before rendering or accepting CRUD actions.
+            function renderAdminSection(section) {
+                app.adminSection = section;
+                const views = { dashboard: adminDashboard, cms: adminCms, events: () => entityManager('events'), sermons: () => entityManager('sermons'), blog: () => entityManager('blogPosts'), gallery: () => entityManager('gallery'), users: () => entityManager('users'), donations: () => entityManager('donations'), contacts: () => entityManager('contactMessages'), prayers: () => entityManager('prayerRequests'), newsletter: () => entityManager('subscribers'), settings: adminSettings, developer: adminDeveloper };
+                if (!canAccess(section)) {
+                    document.getElementById('adminContent').innerHTML = `<div class="card-premium p-5 text-center"><i class="fa-solid fa-lock fa-3x text-warning mb-3"></i><h3 class="fw-black">Access Restricted</h3><p class="lead-soft mb-0">Your role (${escapeHtml(app.currentAdmin.role)}) does not have permission to open this module.</p></div>`;
+                    return;
+                }
+                const content = views[section] ? views[section]() : adminDashboard();
+                document.getElementById('adminContent').innerHTML = content;
+                if (section === 'dashboard') setTimeout(renderAdminCharts, 40);
+                if (section === 'cms') attachCmsHandlers();
+                if (section === 'settings') attachSettingsHandlers();
+                if (section === 'developer') hydrateDeveloperDocs();
+                if (['events','sermons','blog','gallery','users','donations','contacts','prayers','newsletter'].includes(section)) initDataTables();
+            }
+
+            function canAccess(section) {
+                const permissions = rolePermissions[app.currentAdmin?.role] || [];
+                return permissions.includes('*') || permissions.includes(section);
+            }
+
+            function adminDashboard() {
+                const totalDonations = app.data.donations.filter(d => d.status === 'paid').reduce((sum, d) => sum + Number(d.amount), 0);
+                const metrics = [
+                    ['Visitors', app.data.analytics.visitors.toLocaleString('en-NG'), 'fa-chart-line', 'primary'],
+                    ['Events', app.data.events.length, 'fa-calendar-check', 'success'],
+                    ['Sermons', app.data.sermons.length, 'fa-podcast', 'info'],
+                    ['Donations', formatMoney(totalDonations), 'fa-hand-holding-dollar', 'warning'],
+                    ['Gallery Uploads', app.data.gallery.length, 'fa-images', 'danger'],
+                    ['Users', app.data.users.length + app.data.admins.length, 'fa-users', 'secondary']
+                ];
+                return `<div class="row g-4 mb-4">${metrics.map(m => `<div class="col-md-6 col-xl-4"><div class="card-premium metric-card p-4"><div class="d-flex justify-content-between"><div><p class="text-muted fw-bold mb-1">${m[0]}</p><h3 class="fw-black mb-0">${m[1]}</h3></div><div class="rounded-4 text-bg-${m[3]} d-grid place-items-center" style="width:54px;height:54px"><i class="fa-solid ${m[2]}"></i></div></div></div></div>`).join('')}</div><div class="row g-4"><div class="col-xl-8"><div class="card-premium p-4"><h5 class="fw-black mb-3">Monthly Attendance And Donations</h5><canvas id="performanceChart" height="120"></canvas></div></div><div class="col-xl-4"><div class="card-premium p-4"><h5 class="fw-black mb-3">Content Mix</h5><canvas id="contentChart" height="220"></canvas></div></div><div class="col-12"><div class="card-premium p-4"><div class="d-flex justify-content-between mb-3"><h5 class="fw-black mb-0">Recent Activity Logs</h5><button class="btn btn-sm btn-outline-primary" onclick="TP.exportCsv('activityLogs')">Export CSV</button></div><div class="table-responsive"><table class="table table-hover"><thead><tr><th>Actor</th><th>Action</th><th>Module</th><th>IP</th><th>Date</th></tr></thead><tbody>${app.data.activityLogs.slice(0, 12).map(log => `<tr><td>${escapeHtml(log.actor)}</td><td>${escapeHtml(log.action)}</td><td>${escapeHtml(log.module)}</td><td>${escapeHtml(log.ip)}</td><td>${formatDate(log.createdAt, { hour: '2-digit', minute: '2-digit' })}</td></tr>`).join('')}</tbody></table></div></div></div></div>`;
+            }
+
+            function renderAdminCharts() {
+                Object.values(app.charts).forEach(chart => chart?.destroy?.());
+                app.charts.performance = new Chart(document.getElementById('performanceChart'), {
+                    type: 'line',
+                    data: { labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], datasets: [
+                        { label: 'Attendance', data: app.data.analytics.monthlyAttendance, borderColor: '#1647e8', backgroundColor: 'rgba(22,71,232,.12)', tension: .35, fill: true },
+                        { label: 'Donations / 1000', data: app.data.analytics.monthlyDonations.map(v => Math.round(v / 1000)), borderColor: '#f6c84c', backgroundColor: 'rgba(246,200,76,.16)', tension: .35, fill: true }
+                    ]},
+                    options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
+                });
+                app.charts.content = new Chart(document.getElementById('contentChart'), {
+                    type: 'doughnut',
+                    data: { labels: ['Events','Sermons','Blog','Gallery','Prayers'], datasets: [{ data: [app.data.events.length, app.data.sermons.length, app.data.blogPosts.length, app.data.gallery.length, app.data.prayerRequests.length], backgroundColor: ['#1647e8','#f6c84c','#15b8a6','#ef4444','#7c3aed'] }] },
+                    options: { plugins: { legend: { position: 'bottom' } } }
+                });
+            }
+
+            function adminCms() {
+                const s = app.data.settings;
+                return `<div class="row g-4"><div class="col-xl-7"><div class="card-premium p-4"><h5 class="fw-black mb-3">Homepage And Brand Content</h5><form id="cmsForm">${csrfInput()}<div class="row g-3"><div class="col-md-6"><label class="form-label">Site Name</label><input class="form-control" name="siteName" value="${escapeHtml(s.siteName)}"></div><div class="col-md-6"><label class="form-label">Tagline</label><input class="form-control" name="tagline" value="${escapeHtml(s.tagline)}"></div><div class="col-md-6"><label class="form-label">Next Event Date</label><input class="form-control" name="nextEventDate" type="datetime-local" value="${new Date(s.nextEventDate).toISOString().slice(0,16)}"></div><div class="col-md-6"><label class="form-label">Venue</label><input class="form-control" name="venue" value="${escapeHtml(s.venue)}"></div><div class="col-12"><label class="form-label">SEO Description</label><textarea class="form-control" name="seoDescription" rows="3">${escapeHtml(s.seoDescription)}</textarea></div><div class="col-12"><button class="btn btn-royal" type="submit">Save CMS Settings</button></div></div></form></div></div><div class="col-xl-5"><div class="card-premium p-4"><h5 class="fw-black mb-3">Hero Sliders</h5><p class="lead-soft small">The live build rotates premium worship photography and supports production video backgrounds in the PHP CMS.</p>${heroImages.map((img, index) => `<div class="d-flex align-items-center gap-3 mb-3"><div class="rounded-3" style="width:74px;height:52px;background-image:${img};background-size:cover;background-position:center"></div><div><strong>Slide ${index + 1}</strong><br><small class="text-muted">Image/video ready</small></div></div>`).join('')}<div class="drop-zone mt-3"><i class="fa-solid fa-cloud-arrow-up fa-2x text-royal mb-2"></i><div class="fw-bold">Drag hero assets here</div><small class="text-muted">Validated upload placeholder</small></div></div></div></div>`;
+            }
+
+            function attachCmsHandlers() {
+                document.getElementById('cmsForm').addEventListener('submit', async event => {
+                    event.preventDefault();
+                    const form = event.currentTarget;
+                    if (!validateCsrf(form)) return toast('Security token expired.', 'danger');
+                    await fakeFetch({ saved: true });
+                    app.data.settings.siteName = secureText(form.siteName.value, 120);
+                    app.data.settings.tagline = secureText(form.tagline.value, 180);
+                    app.data.settings.nextEventDate = new Date(form.nextEventDate.value).toISOString();
+                    app.data.settings.venue = secureText(form.venue.value, 220);
+                    app.data.settings.seoDescription = secureText(form.seoDescription.value, 320);
+                    addLog('CMS settings updated', 'CMS');
+                    saveData();
+                    toast('CMS settings saved.');
+                });
+            }
+
+            const entityConfig = {
+                events: { title: 'Event Management', singular: 'Event', fields: ['title','date','location','category','status','capacity'], collection: 'events' },
+                sermons: { title: 'Sermon Management', singular: 'Sermon', fields: ['title','speaker','category','type','status','downloads'], collection: 'sermons' },
+                blogPosts: { title: 'Blog Management', singular: 'Blog Post', fields: ['title','category','status','publishDate'], collection: 'blogPosts' },
+                gallery: { title: 'Gallery Management', singular: 'Gallery Item', fields: ['title','category','type','status'], collection: 'gallery' },
+                users: { title: 'User Management', singular: 'User', fields: ['name','email','phone','role','status'], collection: 'users' },
+                donations: { title: 'Donation Management', singular: 'Donation', fields: ['donorName','donorEmail','amount','method','status'], collection: 'donations' },
+                contactMessages: { title: 'Contact Management', singular: 'Message', fields: ['name','email','subject','status','createdAt'], collection: 'contactMessages' },
+                prayerRequests: { title: 'Prayer Request Management', singular: 'Prayer Request', fields: ['name','visibility','status','createdAt'], collection: 'prayerRequests' },
+                subscribers: { title: 'Newsletter Management', singular: 'Subscriber', fields: ['name','email','status','subscribedAt'], collection: 'subscribers' }
+            };
+
+            const entitySectionMap = { events: 'events', sermons: 'sermons', blogPosts: 'blog', gallery: 'gallery', users: 'users', donations: 'donations', contactMessages: 'contacts', prayerRequests: 'prayers', subscribers: 'newsletter' };
+
+            function entityManager(entity) {
+                const cfg = entityConfig[entity];
+                const rows = app.data[cfg.collection].map(item => `<tr>${cfg.fields.map(field => `<td>${fieldValue(item, field)}</td>`).join('')}<td class="text-end"><div class="btn-group btn-group-sm"><button class="btn btn-outline-primary" onclick="TP.openEntityModal('${entity}','${item.id}')"><i class="fa-solid fa-pen"></i></button><button class="btn btn-outline-danger" onclick="TP.deleteEntity('${entity}','${item.id}')"><i class="fa-solid fa-trash"></i></button></div></td></tr>`).join('');
+                const canCreate = !['contactMessages'].includes(entity);
+                return `<div class="card-premium p-4"><div class="d-flex flex-wrap justify-content-between gap-3 align-items-center mb-4"><div><h4 class="fw-black mb-1">${cfg.title}</h4><p class="text-muted mb-0">AJAX-style CRUD, prepared-statement-ready data contracts, DataTables, exports, and audit logs.</p></div><div class="d-flex gap-2">${canCreate ? `<button class="btn btn-royal" onclick="TP.openEntityModal('${entity}')"><i class="fa-solid fa-plus me-2"></i>Add ${cfg.singular}</button>` : ''}<button class="btn btn-outline-primary" onclick="TP.exportCsv('${entity}')"><i class="fa-solid fa-file-export me-2"></i>Export</button></div></div><div class="table-responsive"><table class="table table-hover datatable"><thead><tr>${cfg.fields.map(f => `<th>${label(f)}</th>`).join('')}<th class="text-end">Actions</th></tr></thead><tbody>${rows}</tbody></table></div></div>${entityExtras(entity)}`;
+            }
+
+            function entityExtras(entity) {
+                if (entity === 'events') {
+                    const rows = app.data.eventRegistrations.map(reg => {
+                        const event = app.data.events.find(item => item.id === reg.eventId);
+                        return `<tr><td>${escapeHtml(event?.title || 'Unknown Event')}</td><td>${escapeHtml(reg.fullName)}</td><td>${escapeHtml(reg.email)}</td><td>${escapeHtml(reg.ticketCode)}</td><td><span class="badge text-bg-${statusColor(reg.status)}">${escapeHtml(reg.status)}</span></td><td>${formatDate(reg.createdAt)}</td></tr>`;
+                    }).join('');
+                    return `<div class="card-premium p-4 mt-4"><div class="d-flex justify-content-between gap-3 mb-3"><div><h5 class="fw-black mb-1">Event Registration Management</h5><p class="text-muted mb-0">Attendee list with export-ready ticket records.</p></div><button class="btn btn-outline-primary" onclick="TP.exportCsv('eventRegistrations')">Export Attendees</button></div><div class="table-responsive"><table class="table table-hover datatable"><thead><tr><th>Event</th><th>Name</th><th>Email</th><th>Ticket</th><th>Status</th><th>Date</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
+                }
+                if (entity === 'gallery') return `<div class="card-premium p-4 mt-4"><h5 class="fw-black">Multi-Image Upload And Optimization</h5><div class="drop-zone"><i class="fa-solid fa-images fa-2x text-royal mb-2"></i><div class="fw-bold">Drag-and-drop batch upload placeholder</div><small class="text-muted">Production PHP validates MIME type, compresses images, generates thumbnails, and stores randomized filenames.</small></div></div>`;
+                if (entity === 'users') {
+                    const adminRows = app.data.admins.map(admin => `<tr><td>${escapeHtml(admin.name)}</td><td>${escapeHtml(admin.email)}</td><td>${escapeHtml(admin.username)}</td><td><span class="badge text-bg-primary">${escapeHtml(admin.role)}</span></td><td><span class="badge text-bg-${statusColor(admin.status)}">${escapeHtml(admin.status)}</span></td><td>${admin.lastLoginAt ? formatDate(admin.lastLoginAt, { hour: '2-digit', minute: '2-digit' }) : 'Never'}</td></tr>`).join('');
+                    return `<div class="card-premium p-4 mt-4"><h5 class="fw-black mb-3">Multi-Admin Roles And Permissions</h5><div class="table-responsive"><table class="table table-hover datatable"><thead><tr><th>Name</th><th>Email</th><th>Username</th><th>Role</th><th>Status</th><th>Last Login</th></tr></thead><tbody>${adminRows}</tbody></table></div></div>`;
+                }
+                if (entity === 'subscribers') return `<div class="card-premium p-4 mt-4"><div class="d-flex flex-wrap justify-content-between gap-3"><div><h5 class="fw-black mb-1">Bulk Email Campaigns</h5><p class="text-muted mb-0">Production queues newsletters through PHPMailer SMTP with unsubscribe tokens and bounce tracking.</p></div><button class="btn btn-gold" onclick="Swal.fire('Campaign Queued','Newsletter campaign placeholder is ready for SMTP queue integration.','success')">Create Campaign</button></div></div>`;
+                return '';
+            }
+
+            function fieldValue(item, field) {
+                const value = item[field];
+                if (field === 'amount') return formatMoney(value, item.currency || 'NGN');
+                if (['date','publishDate','createdAt','subscribedAt'].includes(field) && value) return formatDate(value);
+                if (field === 'status') return `<span class="badge text-bg-${statusColor(value)}"><span class="status-dot bg-light"></span>${escapeHtml(value)}</span>`;
+                if (field === 'downloads') return Number(value || 0).toLocaleString('en-NG');
+                return escapeHtml(value ?? '');
+            }
+
+            function label(value) {
+                return value.replace(/([A-Z])/g, ' $1').replace(/^./, c => c.toUpperCase());
+            }
+
+            function statusColor(status) {
+                return ['paid','published','active','approved','answered','confirmed'].includes(status) ? 'success' : ['pending','scheduled','new','draft'].includes(status) ? 'warning' : ['blocked','suspended','failed','rejected'].includes(status) ? 'danger' : 'secondary';
+            }
+
+            function initDataTables() {
+                setTimeout(() => {
+                    document.querySelectorAll('.datatable').forEach(table => {
+                        if ($.fn.dataTable.isDataTable(table)) $(table).DataTable().destroy();
+                        $(table).DataTable({ pageLength: 8, responsive: true, order: [], language: { search: 'Search records:' } });
+                    });
+                }, 0);
+            }
+
+            function openEntityModal(entity, id = null) {
+                const cfg = entityConfig[entity];
+                const item = id ? app.data[cfg.collection].find(row => row.id === id) : {};
+                const fields = entityFormFields(entity, item || {});
+                modal(`<div class="modal-header"><h4 class="modal-title fw-black">${id ? 'Edit' : 'Create'} ${cfg.singular}</h4><button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><form id="entityForm" data-entity="${entity}" data-id="${id || ''}"><div class="modal-body">${csrfInput()}<div class="row g-3">${fields}</div></div><div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cancel</button><button class="btn btn-royal" type="submit">Save ${cfg.singular}</button></div></form>`);
+                if (entity === 'blogPosts' && window.tinymce) {
+                    const oldEditor = tinymce.get('blogBodyEditor');
+                    if (oldEditor) oldEditor.remove();
+                    setTimeout(() => tinymce.init({ selector: '#blogBodyEditor', height: 260, menubar: false, plugins: 'lists link table code', toolbar: 'undo redo | blocks | bold italic | bullist numlist | link | code' }), 100);
+                }
+                document.getElementById('entityForm').addEventListener('submit', saveEntity);
+                const fileInput = document.querySelector('#entityForm input[type="file"]');
+                if (fileInput) fileInput.addEventListener('change', () => { const result = validateUpload(fileInput.files[0]); if (!result.ok) { toast(result.message, 'warning'); fileInput.value = ''; } });
+            }
+
+            function entityFormFields(entity, item) {
+                const input = (name, labelText, type = 'text', value = '') => `<div class="col-md-6"><label class="form-label">${labelText}</label><input class="form-control" name="${name}" type="${type}" value="${escapeHtml(value)}"></div>`;
+                const area = (name, labelText, value = '', id = '') => `<div class="col-12"><label class="form-label">${labelText}</label><textarea class="form-control" ${id ? `id="${id}"` : ''} name="${name}" rows="4">${escapeHtml(value)}</textarea></div>`;
+                const select = (name, labelText, options, value = '') => `<div class="col-md-6"><label class="form-label">${labelText}</label><select class="form-select" name="${name}">${options.map(o => `<option value="${escapeHtml(o)}" ${o === value ? 'selected' : ''}>${escapeHtml(label(o))}</option>`).join('')}</select></div>`;
+                if (entity === 'events') return input('title','Title','text', item.title) + input('date','Date','datetime-local', item.date ? new Date(item.date).toISOString().slice(0,16) : '') + input('location','Location','text', item.location) + input('category','Category','text', item.category) + select('status','Status',['draft','published','past','cancelled'], item.status || 'published') + input('capacity','Capacity','number', item.capacity || 0) + input('flyer','Flyer URL','url', item.flyer) + area('description','Description', item.description);
+                if (entity === 'sermons') return input('title','Title','text', item.title) + input('speaker','Speaker','text', item.speaker) + select('category','Category', app.data.sermonCategories, item.category || 'Worship') + select('type','Type',['audio','video','youtube'], item.type || 'video') + input('date','Date','date', item.date) + input('mediaUrl','Media URL','url', item.mediaUrl) + input('downloadUrl','Download URL','url', item.downloadUrl || '#') + input('downloads','Downloads','number', item.downloads || 0) + select('status','Status',['draft','published'], item.status || 'published') + area('description','Description', item.description);
+                if (entity === 'blogPosts') return input('title','Title','text', item.title) + select('category','Category', app.data.blogCategories, item.category || 'Event Update') + input('tags','Tags comma separated','text', (item.tags || []).join(', ')) + select('status','Status',['draft','scheduled','published','archived'], item.status || 'draft') + input('publishDate','Publish Date','date', item.publishDate || new Date().toISOString().slice(0,10)) + input('image','Featured Image URL','url', item.image) + area('excerpt','Excerpt', item.excerpt) + area('body','Body', item.body, 'blogBodyEditor');
+                if (entity === 'gallery') return input('title','Title','text', item.title) + input('category','Category','text', item.category) + select('type','Type',['image','video'], item.type || 'image') + select('status','Status',['draft','published'], item.status || 'published') + input('url','Media URL','url', item.url) + `<div class="col-12"><label class="form-label">Secure Upload Placeholder</label><input class="form-control" type="file" accept="image/*,video/*"></div>`;
+                if (entity === 'users') return input('name','Name','text', item.name) + input('email','Email','email', item.email) + input('phone','Phone','text', item.phone) + input('role','Role','text', item.role || 'member') + select('status','Status',['active','suspended','blocked'], item.status || 'active');
+                if (entity === 'donations') return input('donorName','Donor Name','text', item.donorName) + input('donorEmail','Donor Email','email', item.donorEmail) + input('amount','Amount','number', item.amount || 0) + select('method','Method',['bank_transfer','card','cash','ussd','paypal'], item.method || 'bank_transfer') + select('status','Status',['pending','paid','failed','refunded'], item.status || 'pending') + input('purpose','Purpose','text', item.purpose || 'General Giving');
+                if (entity === 'contactMessages') return input('name','Name','text', item.name) + input('email','Email','email', item.email) + input('subject','Subject','text', item.subject) + select('status','Status',['new','read','replied','archived'], item.status || 'read') + area('message','Message', item.message) + area('reply','Reply Email Draft', 'Thank you for contacting Team Praise.');
+                if (entity === 'prayerRequests') return input('name','Name','text', item.name) + input('email','Email','email', item.email) + select('visibility','Visibility',['public','private'], item.visibility || 'private') + select('status','Status',['pending','approved','answered','rejected'], item.status || 'pending') + area('request','Request', item.request);
+                if (entity === 'subscribers') return input('name','Name','text', item.name) + input('email','Email','email', item.email) + select('status','Status',['active','unsubscribed','bounced'], item.status || 'active');
+                return '';
+            }
+
+            async function saveEntity(event) {
+                event.preventDefault();
+                const form = event.currentTarget;
+                if (!validateCsrf(form)) return toast('Security token expired.', 'danger');
+                const entity = form.dataset.entity;
+                const id = form.dataset.id;
+                const cfg = entityConfig[entity];
+                const formData = new FormData(form);
+                const payload = {};
+                formData.forEach((value, key) => { if (key !== 'csrf_token') payload[key] = typeof value === 'string' ? value.trim() : value; });
+                if (window.tinymce && tinymce.get('blogBodyEditor')) payload.body = tinymce.get('blogBodyEditor').getContent();
+                normalizePayload(entity, payload);
+                await fakeFetch({ saved: true });
+                if (id) {
+                    const index = app.data[cfg.collection].findIndex(row => row.id === id);
+                    app.data[cfg.collection][index] = { ...app.data[cfg.collection][index], ...payload };
+                    addLog(`${cfg.singular} updated`, cfg.title);
+                } else {
+                    app.data[cfg.collection].unshift({ id: uid(entity.slice(0, 4)), ...payload });
+                    addLog(`${cfg.singular} created`, cfg.title);
+                }
+                saveData();
+                bootstrap.Modal.getInstance(document.getElementById('globalModal')).hide();
+                toast(`${cfg.singular} saved.`);
+                renderAdminSection(entitySectionMap[entity] || entity);
+            }
+
+            function normalizePayload(entity, payload) {
+                Object.keys(payload).forEach(key => { if (typeof payload[key] === 'string' && key !== 'body') payload[key] = secureText(payload[key], 5000); });
+                if (entity === 'events') { payload.slug = (payload.title || 'event').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); payload.capacity = Number(payload.capacity || 0); payload.theme = payload.category; }
+                if (entity === 'sermons') { payload.downloads = Number(payload.downloads || 0); }
+                if (entity === 'blogPosts') { payload.tags = (payload.tags || '').split(',').map(t => secureText(t.trim(), 40)).filter(Boolean); payload.body = payload.body || ''; }
+                if (entity === 'donations') { payload.amount = Number(payload.amount || 0); payload.currency = 'NGN'; payload.date = new Date().toISOString().slice(0,10); }
+                if (entity === 'subscribers') { payload.subscribedAt = payload.subscribedAt || new Date().toISOString().slice(0,10); }
+                if (entity === 'prayerRequests') { payload.createdAt = payload.createdAt || new Date().toISOString().slice(0,10); }
+                if (entity === 'contactMessages') { payload.createdAt = payload.createdAt || new Date().toISOString().slice(0,10); }
+            }
+
+            async function deleteEntity(entity, id) {
+                const cfg = entityConfig[entity];
+                const result = await Swal.fire({ title: `Delete ${cfg.singular}?`, text: 'This action is recorded in the audit trail.', icon: 'warning', showCancelButton: true, confirmButtonText: 'Delete' });
+                if (!result.isConfirmed) return;
+                app.data[cfg.collection] = app.data[cfg.collection].filter(row => row.id !== id);
+                addLog(`${cfg.singular} deleted`, cfg.title);
+                saveData();
+                toast(`${cfg.singular} deleted.`);
+                renderAdminSection(entitySectionMap[entity] || entity);
+            }
+
+            function exportCsv(entity) {
+                const data = entity === 'activityLogs' ? app.data.activityLogs : app.data[entityConfig[entity]?.collection || entity] || [];
+                if (!data.length) return toast('No records to export.', 'warning');
+                const headers = Object.keys(data[0]);
+                const rows = [headers.join(','), ...data.map(row => headers.map(h => `"${String(Array.isArray(row[h]) ? row[h].join('|') : row[h] ?? '').replace(/"/g, '""')}"`).join(','))];
+                downloadText(`${entity}.csv`, rows.join('\n'));
+                addLog(`Exported ${entity}`, 'Exports');
+            }
+
+            function adminSettings() {
+                const s = app.data.settings;
+                return `<div class="row g-4"><div class="col-xl-7"><div class="card-premium p-4"><h5 class="fw-black mb-3">Site, SMTP, SEO, Maintenance</h5><form id="settingsForm">${csrfInput()}<div class="row g-3"><div class="col-md-6"><label class="form-label">Contact Email</label><input class="form-control" name="contactEmail" value="${escapeHtml(s.contactEmail)}"></div><div class="col-md-6"><label class="form-label">Phone</label><input class="form-control" name="phone" value="${escapeHtml(s.phone)}"></div><div class="col-12"><label class="form-label">Address</label><input class="form-control" name="address" value="${escapeHtml(s.address)}"></div><div class="col-md-6"><label class="form-label">SMTP Host</label><input class="form-control" name="smtpHost" value="${escapeHtml(s.smtpHost)}"></div><div class="col-md-6"><label class="form-label">SEO Title</label><input class="form-control" name="seoTitle" value="${escapeHtml(s.seoTitle)}"></div><div class="col-12"><div class="form-check form-switch"><input class="form-check-input" type="checkbox" name="maintenanceMode" ${s.maintenanceMode ? 'checked' : ''}><label class="form-check-label">Maintenance mode</label></div></div><div class="col-12"><button class="btn btn-royal" type="submit">Save Settings</button><button class="btn btn-outline-primary ms-2" type="button" id="testEmail">Send Test Email</button></div></div></form></div></div><div class="col-xl-5"><div class="card-premium p-4"><h5 class="fw-black">Advanced Placeholders</h5><div class="d-grid gap-3"><div><strong>Logo Upload</strong><br><small class="text-muted">PNG/SVG validation and CDN path storage.</small></div><div><strong>Favicon Upload</strong><br><small class="text-muted">ICO/PNG validation with cache busting.</small></div><div><strong>Caching</strong><br><small class="text-muted">File cache, OPcache, and browser cache headers.</small></div><div><strong>PWA</strong><br><small class="text-muted">Manifest and service worker download in Developer Center.</small></div></div></div></div></div>`;
+            }
+
+            function attachSettingsHandlers() {
+                document.getElementById('settingsForm').addEventListener('submit', async event => {
+                    event.preventDefault();
+                    const form = event.currentTarget;
+                    if (!validateCsrf(form)) return toast('Security token expired.', 'danger');
+                    await fakeFetch({ saved: true });
+                    ['contactEmail','phone','address','smtpHost','seoTitle'].forEach(key => app.data.settings[key] = secureText(form[key].value, 220));
+                    app.data.settings.maintenanceMode = form.maintenanceMode.checked;
+                    addLog('Site settings updated', 'Settings');
+                    saveData();
+                    toast('Settings saved.');
+                });
+                document.getElementById('testEmail').addEventListener('click', () => Swal.fire('SMTP Test Queued', 'Production PHPMailer service would send a signed test email using SMTP settings.', 'success'));
+            }
+
+            function adminDeveloper() {
+                return `<div class="row g-4"><div class="col-12"><div class="card-premium p-4"><div class="d-flex flex-wrap justify-content-between gap-3 align-items-center"><div><h4 class="fw-black mb-1">Production Architecture Center</h4><p class="text-muted mb-0">PHP 8 MVC, MySQL schema, REST API contracts, security controls, cPanel/VPS deployment, and downloadable assets.</p></div><div class="d-flex flex-wrap gap-2"><button class="btn btn-outline-primary" onclick="TP.downloadText('database-schema.sql', SQL_SCHEMA)">Download SQL</button><button class="btn btn-outline-primary" onclick="TP.downloadText('.htaccess', HTACCESS)">Download .htaccess</button><button class="btn btn-outline-primary" onclick="TP.downloadText('.env.example', ENV_SAMPLE)">Download .env</button><button class="btn btn-outline-primary" onclick="TP.downloadText('manifest.webmanifest', PWA_MANIFEST)">PWA Manifest</button><button class="btn btn-outline-primary" onclick="TP.downloadText('service-worker.js', SERVICE_WORKER)">Service Worker</button><button class="btn btn-gold" onclick="TP.generateSitemap()">Generate Sitemap</button></div></div></div></div><div class="col-xl-5"><div class="card-premium p-4"><h5 class="fw-black">Clean Folder Structure</h5><pre class="code-block" id="treeBlock"></pre></div><div class="card-premium p-4 mt-4"><h5 class="fw-black">REST API Endpoints</h5><div class="table-responsive"><table class="table table-sm"><thead><tr><th>Method</th><th>Endpoint</th><th>Purpose</th></tr></thead><tbody>${apiRows()}</tbody></table></div></div></div><div class="col-xl-7"><div class="card-premium p-4"><h5 class="fw-black">MySQL Schema</h5><pre class="code-block" id="schemaBlock"></pre></div></div><div class="col-xl-6"><div class="card-premium p-4"><h5 class="fw-black">.htaccess</h5><pre class="code-block" id="htaccessBlock"></pre></div></div><div class="col-xl-6"><div class="card-premium p-4"><h5 class="fw-black">Environment Configuration</h5><pre class="code-block" id="envBlock"></pre></div></div><div class="col-xl-6"><div class="card-premium p-4"><h5 class="fw-black">Installation Guide</h5><pre class="code-block" id="installBlock"></pre></div></div><div class="col-xl-6"><div class="card-premium p-4"><h5 class="fw-black">Security Implementation Map</h5><ul class="list-group list-group-flush"><li class="list-group-item">CSRF tokens on every mutating form and AJAX-style request.</li><li class="list-group-item">Prepared statement architecture through PDO model layer.</li><li class="list-group-item">HTML output encoding, input validation, and rich text sanitization.</li><li class="list-group-item">Secure upload validation by MIME, extension, size, and random filenames.</li><li class="list-group-item">Password hashing with password_hash(), role checks, session timeout, and remember tokens.</li><li class="list-group-item">Login rate limiting, IP logging, admin audit trail, and activity logs.</li><li class="list-group-item">PHPMailer SMTP for password reset, contact replies, newsletters, event confirmations, and admin alerts.</li></ul></div></div></div>`;
+            }
+
+            function apiRows() {
+                return [
+                    ['POST','/api/v1/auth/login','Issue secure session token'], ['POST','/api/v1/auth/logout','Revoke token'], ['GET','/api/v1/events','List events'], ['POST','/api/v1/events','Create event'], ['PUT','/api/v1/events/{id}','Update event'], ['DELETE','/api/v1/events/{id}','Delete event'], ['POST','/api/v1/events/{id}/register','Register attendee'], ['GET','/api/v1/sermons','List sermons'], ['GET','/api/v1/blog-posts','List blog posts'], ['POST','/api/v1/donations','Create donation intent'], ['POST','/api/v1/prayer-requests','Submit prayer request']
+                ].map(row => `<tr><td><span class="badge text-bg-primary">${row[0]}</span></td><td><code>${row[1]}</code></td><td>${row[2]}</td></tr>`).join('');
+            }
+
+            function hydrateDeveloperDocs() {
+                window.SQL_SCHEMA = SQL_SCHEMA;
+                window.HTACCESS = HTACCESS;
+                window.ENV_SAMPLE = ENV_SAMPLE;
+                window.PWA_MANIFEST = PWA_MANIFEST;
+                window.SERVICE_WORKER = SERVICE_WORKER;
+                document.getElementById('treeBlock').textContent = PROJECT_TREE;
+                document.getElementById('schemaBlock').textContent = SQL_SCHEMA;
+                document.getElementById('htaccessBlock').textContent = HTACCESS;
+                document.getElementById('envBlock').textContent = ENV_SAMPLE;
+                document.getElementById('installBlock').textContent = INSTALL_GUIDE;
+            }
+
+            function downloadText(filename, content) {
+                const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = filename;
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+                URL.revokeObjectURL(url);
+            }
+
+            function generateSitemap() {
+                const base = location.origin + location.pathname.replace(/index\.html$/, '');
+                const urls = pages.map(page => `  <url><loc>${base}#${page}</loc><changefreq>weekly</changefreq><priority>${page === 'home' ? '1.0' : '0.8'}</priority></url>`).join('\n');
+                const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>`;
+                downloadText('sitemap.xml', xml);
+                toast('Sitemap generated.');
+            }
+
+            function rotateHero() {
+                let index = 0;
+                setInterval(() => {
+                    index = (index + 1) % heroImages.length;
+                    document.documentElement.style.setProperty('--hero-image', heroImages[index]);
+                }, 6500);
+            }
+
+            function bindGlobalEvents() {
+                document.addEventListener('click', event => {
+                    const pageLink = event.target.closest('[data-page]');
+                    if (pageLink) {
+                        event.preventDefault();
+                        location.hash = pageLink.dataset.page;
+                        const menu = bootstrap.Collapse.getInstance(document.getElementById('publicMenu'));
+                        if (menu) menu.hide();
+                    }
+                });
+                document.getElementById('themeTogglePublic').addEventListener('click', toggleTheme);
+                window.addEventListener('hashchange', navigateFromHash);
+                window.addEventListener('scroll', () => document.getElementById('publicNav').classList.toggle('scrolled', window.scrollY > 24));
+                setInterval(() => {
+                    if (!app.currentAdmin) return;
+                    const note = { id: uid('not'), title: 'Realtime ministry update', body: 'New visitor analytics and registrations synced.', type: 'info', read: false, createdAt: new Date().toISOString() };
+                    app.data.notifications.unshift(note);
+                    app.data.notifications = app.data.notifications.slice(0, 25);
+                    saveData();
+                    toast('Realtime notification received.', 'warning');
+                    if (location.hash.startsWith('#admin')) renderAdminShell(), renderAdminSection(app.adminSection);
+                }, 30000);
+            }
+
+            async function init() {
+                app.data = loadData();
+                await ensureAdminHashes();
+                Object.assign(window, { SQL_SCHEMA, HTACCESS, ENV_SAMPLE, PWA_MANIFEST, SERVICE_WORKER });
+                setTheme(localStorage.getItem('tp_theme') || 'light');
+                bindGlobalEvents();
+                rotateHero();
+                navigateFromHash();
+                setTimeout(() => document.getElementById('loader').classList.add('hidden'), 450);
+            }
+
+            document.addEventListener('DOMContentLoaded', init);
+        })();
+    </script>
+</body>
+</html>
