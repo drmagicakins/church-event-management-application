@@ -23,7 +23,8 @@ abstract class Model
 
     protected static function db(): Database
     {
-        return Database::getInstance(require ROOT_PATH . '/config/app.php')['database'] ?? []);
+        $config = require ROOT_PATH . '/config/app.php';
+        return Database::getInstance($config['database'] ?? []);
     }
 
     public static function find(int $id): ?array

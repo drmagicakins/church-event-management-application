@@ -7,6 +7,7 @@ A complete, production-ready PHP 8 MVC application for managing Team Praise mini
 ## ✨ Features
 
 ### Public Website
+
 - **Home** - Hero slider, countdown, latest events, testimonials, newsletter
 - **About** - Vision, mission, leadership, core values
 - **Events** - Upcoming/past events, registration, calendar
@@ -19,6 +20,7 @@ A complete, production-ready PHP 8 MVC application for managing Team Praise mini
 - **Livestream** - YouTube/Facebook embed, countdown, live chat placeholder
 
 ### Admin Dashboard
+
 - **Dashboard** - Metrics, charts (Chart.js), activity logs
 - **CMS** - Homepage sections, hero sliders, SEO, social links
 - **Events** - Full CRUD, flyer upload, registration management, export
@@ -33,6 +35,7 @@ A complete, production-ready PHP 8 MVC application for managing Team Praise mini
 - **Settings** - SMTP, SEO, logo/favicon, maintenance mode
 
 ### Security
+
 - CSRF protection on every form
 - SQL injection prevention via prepared statements (PDO)
 - XSS protection via output encoding
@@ -44,6 +47,7 @@ A complete, production-ready PHP 8 MVC application for managing Team Praise mini
 - Role-based access control (RBAC)
 
 ### Developer Features
+
 - REST API v1 for mobile apps
 - PWA manifest and service worker
 - Sitemap generator
@@ -57,6 +61,7 @@ A complete, production-ready PHP 8 MVC application for managing Team Praise mini
 ## 🚀 Quick Start
 
 ### 1. Clone and install
+
 ```bash
 git clone <repo-url> teampraise
 cd teampraise
@@ -65,20 +70,24 @@ cp .env.example .env
 ```
 
 ### 2. Create the database
+
 ```bash
 mysql -u root -p < database/schema.sql
 ```
 
 ### 3. Configure `.env`
+
 Edit `.env` with your database credentials, SMTP settings, and `APP_URL`.
 
 ### 4. Set permissions
+
 ```bash
 chmod 755 uploads/ logs/
 chmod 644 .env
 ```
 
 ### 5. Start the server
+
 ```bash
 php -S localhost:8000
 ```
@@ -123,6 +132,7 @@ teampraise/
 ## 🔧 Deployment
 
 ### cPanel / Shared Hosting
+
 1. Upload files to `public_html/`
 2. Create MySQL database in cPanel
 3. Import `database/schema.sql` via phpMyAdmin
@@ -131,6 +141,7 @@ teampraise/
 6. Set permissions: `chmod 755 uploads/ logs/`
 
 ### VPS (Nginx + PHP-FPM)
+
 See `INSTALL.md` for complete Nginx configuration and Let's Encrypt setup.
 
 ---
@@ -138,6 +149,7 @@ See `INSTALL.md` for complete Nginx configuration and Let's Encrypt setup.
 ## 📚 API Documentation
 
 ### Authentication
+
 ```
 POST /api/v1/auth/login
 Body: { "username": "admin", "password": "..." }
@@ -145,28 +157,33 @@ Response: { "ok": true, "token": "...", "user": {...} }
 ```
 
 ### Events
+
 ```
 GET  /api/v1/events
 GET  /api/v1/events/{id}
 ```
 
 ### Sermons
+
 ```
 GET /api/v1/sermons
 ```
 
 ### Blog
+
 ```
 GET /api/v1/blog-posts
 ```
 
 ### Donations
+
 ```
 POST /api/v1/donations
 Body: { "donor_name": "...", "amount": 50000, "method": "bank_transfer" }
 ```
 
 ### Prayer Requests
+
 ```
 POST /api/v1/prayer-requests
 Body: { "name": "...", "request": "...", "visibility": "private" }

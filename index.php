@@ -15,15 +15,33 @@ declare(strict_types=1);
 define('ROOT_PATH', __DIR__);
 define('START_TIME', microtime(true));
 
-// 2. Load Composer autoloader (PSR-4 + helpers)
+// 2. Load Composer autoloader (PSR-4 + helpers) when available.
+//    If Composer hasn't been installed, fall back to a manual autoloader
+//    that mirrors the namespace -> folder mapping defined in composer.json.
 if (file_exists(ROOT_PATH . '/vendor/autoload.php')) {
     require ROOT_PATH . '/vendor/autoload.php';
 } else {
-    // Fallback manual autoload for environments without Composer
-    spl_autoload_register(function (string $class): void {
-        $path = ROOT_PATH . '/' . str_replace('\\', '/', $class) . '.php';
-        if (file_exists($path)) require $path;
+    // PSR-4 mapping: namespace prefix -> base directory
+    $namespaceMap = [
+        'App\\Core\\'        => ROOT_PATH . '/core/',
+        'App\\Controllers\\' => ROOT_PATH . '/controllers/',
+        'App\\Models\\'      => ROOT_PATH . '/models/',
+    ];
+
+    spl_autoload_register(function (string $class) use ($namespaceMap): void {
+        foreach ($namespaceMap as $prefix => $baseDir) {
+            $len = strlen($prefix);
+            if (strncmp($prefix, $class, $len) !== 0) continue;
+            $relative = substr($class, $len);
+            $file     = $baseDir . str_replace('\\', '/', $relative) . '.php';
+            if (file_exists($file)) {
+                require $file;
+                return;
+            }
+        }
     });
+
+    // Load global helpers manually (Composer's autoload.files isn't running)
     if (file_exists(ROOT_PATH . '/core/helpers.php')) {
         require ROOT_PATH . '/core/helpers.php';
     }
@@ -34,6 +52,20 @@ if (class_exists('Dotenv\\Dotenv') && file_exists(ROOT_PATH . '/.env')) {
     $dotenv = Dotenv\Dotenv::createImmutable(ROOT_PATH);
     $dotenv->load();
     $dotenv->required(['APP_NAME', 'DB_HOST', 'DB_DATABASE', 'DB_USERNAME']);
+} else {
+    // Fallback: load .env manually as $_ENV / $_SERVER entries
+    if (file_exists(ROOT_PATH . '/.env')) {
+        $lines = file(ROOT_PATH . '/.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        foreach ($lines as $line) {
+            $line = trim($line);
+            if ($line === '' || str_starts_with($line, '#')) continue;
+            if (!str_contains($line, '=')) continue;
+            [$key, $value] = array_map('trim', explode('=', $line, 2));
+            $value = trim($value, '"\'');
+            $_ENV[$key] = $value;
+            $_SERVER[$key] = $value;
+        }
+    }
 }
 
 // 4. Load application configuration
@@ -51,7 +83,13 @@ if (($config['app']['debug'] ?? false) === true) {
     ini_set('error_log', ROOT_PATH . '/logs/error.log');
 }
 
-// 6. Start secure session
+// 6. Ensure writable directories exist
+foreach (['logs', 'uploads', 'uploads/events', 'uploads/sermons', 'uploads/gallery'] as $dir) {
+    $full = ROOT_PATH . '/' . $dir;
+    if (!is_dir($full)) @mkdir($full, 0755, true);
+}
+
+// 7. Start secure session
 if (session_status() === PHP_SESSION_NONE) {
     ini_set('session.cookie_httponly', '1');
     ini_set('session.cookie_secure', ($config['app']['env'] ?? 'production') === 'production' ? '1' : '0');
@@ -61,7 +99,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// 7. Regenerate session ID periodically to prevent fixation
+// 8. Regenerate session ID periodically to prevent fixation
 if (!isset($_SESSION['_last_regeneration'])) {
     session_regenerate_id(true);
     $_SESSION['_last_regeneration'] = time();
@@ -70,16 +108,28 @@ if (!isset($_SESSION['_last_regeneration'])) {
     $_SESSION['_last_regeneration'] = time();
 }
 
-// 8. Dispatch request through the router
+// 9. Serve static assets directly (let .htaccess do this in production)
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+if ($uri !== '/' && file_exists(ROOT_PATH . $uri) && !is_dir(ROOT_PATH . $uri)) {
+    return false; // let PHP's built-in server handle static files
+}
+
+// 10. Dispatch request through the router
 try {
     $router = new \App\Core\Router($config);
-    $router->dispatch($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
+    $router->dispatch($_SERVER['REQUEST_METHOD'], $uri);
 } catch (\Throwable $e) {
     http_response_code(500);
+    $msg = $e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine();
     if (($config['app']['debug'] ?? false) === true) {
-        echo '<h1>500 Server Error</h1><pre>' . htmlspecialchars($e->getMessage()) . '</pre>';
+        echo '<h1>500 Server Error</h1>';
+        echo '<pre>' . htmlspecialchars($msg) . "\n\n" . htmlspecialchars($e->getTraceAsString()) . '</pre>';
     } else {
         echo '<h1>500 Server Error</h1><p>Something went wrong. Please try again later.</p>';
-        error_log('[' . date('Y-m-d H:i:s') . '] ' . $e->getMessage() . "\n" . $e->getTraceAsString() . "\n", 3, ROOT_PATH . '/logs/error.log');
     }
+    @file_put_contents(
+        ROOT_PATH . '/logs/error.log',
+        '[' . date('Y-m-d H:i:s') . '] ' . $msg . "\n",
+        FILE_APPEND
+    );
 }
